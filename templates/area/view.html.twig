@@ -1,0 +1,27 @@
+{% extends 'global/layout_view.html.twig' %}
+
+{% set titlePage = "page.areas.title.view" | trans %}
+{% set menu = "areas" %}
+
+{% block buttonsTitle %}
+{% set referer = (app.request.server.get('HTTP_REFERER') is not null ?
+            app.request.server.get('HTTP_REFERER')|default('/') :
+            path('areas_list')) %}
+<li>
+    {{ macro_buttonReturn(referer) }}
+</li>
+{% endblock %}
+
+{% block viewContent %}
+<div class="znv-card-full znv-highlight">
+    <div class="znv-form-group-view">
+        <p>{{ 'page.areas.labels.name'|trans }}</p>
+        <h3>{{ area.name }}</h3>
+    </div>
+</div>
+
+<div class="znv-card-full znv-two-column">
+  {{ macro_cardHalfView('page.areas.labels.status' | trans, area.status) }}  
+</div>
+
+{% endblock %}

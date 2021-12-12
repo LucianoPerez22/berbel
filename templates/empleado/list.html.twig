@@ -1,0 +1,47 @@
+{% extends 'global/layout_list.html.twig' %}
+
+{% set titlePage = "page.empleados.title.list" | trans %}
+{% set menu = "empleados" %}
+
+{% set formFilterAction = path('empleados_list') %}
+{% set pathNew = path('empleado_new') %}
+{% set labelButtonNew = 'page.empleados.buttons.add' %}
+{% set rolesNew = ['ROLE_EMPLEADOS_NEW'] %}
+
+{% block list %}
+    <div class="znv-header">
+        <div class="znv-col"> {{ 'page.empleados.labels.name' | trans }}
+        </div>
+        <div class="znv-col"> {{ 'page.empleados.labels.phone' | trans }}
+        </div>
+        <div class="znv-col"> {{ 'page.empleados.labels.email' | trans }}
+        </div>
+        <div class="znv-col-actions">
+        </div>
+    </div>
+
+    {% for empleado in entities %}
+        <div class="znv-line" data-path="{{ path('empleado_delete', { 'id' : empleado.id }) }}" data-name="{{ empleado.name }}">
+            <div class="znv-col">
+                <div class="znv-header">{{ 'page.group.labels.name' | trans }}:</div>
+                {{ empleado.name }}
+            </div>
+             <div class="znv-col">
+                <div class="znv-header">{{ 'page.group.labels.name' | trans }}:</div>
+                {{ empleado.phone }}
+            </div>
+             <div class="znv-col">
+                <div class="znv-header">{{ 'page.group.labels.name' | trans }}:</div>
+                {{ empleado.email }}
+            </div>
+            <div class="znv-col-actions">
+                <div class="znv-group">
+                    {{ macro_listActionButton(path('empleado_view', {'id' : empleado.id}), 'page.list.buttons.view', 'fa-eye', ['ROLE_EMPLEADOS_VIEW']) }}
+                    {{ macro_listActionButton(path('empleado_edit', {'id' : empleado.id}), 'page.list.buttons.edit', 'fa-pencil', ['ROLE_EMPLEADOS_EDIT']) }}
+                    {{ macro_liConfirmButton('page.list.buttons.delete', 'znv-icon fa-trash', ['ROLE_EMPLEADOS_DELETE'], 'setNameAndText') }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock list %}

@@ -1,0 +1,27 @@
+{% extends 'global/layout_view.html.twig' %}
+
+{% set titlePage = "page.propiedad.title.view" | trans %}
+{% set menu = "areas" %}
+
+{% block buttonsTitle %}
+{% set referer = (app.request.server.get('HTTP_REFERER') is not null ?
+            app.request.server.get('HTTP_REFERER')|default('/') :
+            path('propiedad_list', {'id' : propiedad.area.id})) %}
+<li>
+    {{ macro_buttonReturn(referer) }}
+</li>
+{% endblock %}
+
+{% block viewContent %}
+<div class="znv-card-full znv-highlight">
+    <div class="znv-form-group-view">
+        <p>{{ 'page.propiedades.labels.name'|trans }}</p>
+        <h3>{{ propiedad.name }}</h3>
+    </div>
+</div>
+
+<div class="znv-card-full znv-two-column">
+  {{ macro_cardHalfView('page.propiedades.labels.value' | trans, propiedad.value) }}  
+</div>
+
+{% endblock %}

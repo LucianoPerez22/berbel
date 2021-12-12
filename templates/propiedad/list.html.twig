@@ -1,0 +1,40 @@
+{% extends 'global/layout_list.html.twig' %}
+
+{% set titlePage = "page.propiedades.title.list" | trans %}
+{% set menu = "areas" %}
+
+{% set formFilterAction = path('propiedad_list',{'id' : entities.params.id}) %}
+{% set pathNew = path('propiedad_new',{'id' : entities.params.id}) %}
+{% set labelButtonNew = 'page.propiedades.buttons.add' %}
+{% set rolesNew = ['ROLE_PROPIEDAD_NEW'] %}
+
+{% block list %}
+    <div class="znv-header">
+        <div class="znv-col"> {{ 'page.propiedades.labels.name' | trans }}
+        </div>
+        <div class="znv-col"> {{ 'page.propiedades.labels.value' | trans }}
+        </div>       
+        <div class="znv-col-actions">
+        </div>
+    </div>
+
+    {% for propiedad in entities %}
+        <div class="znv-line" data-path="{{ path('propiedad_delete', { 'id' : propiedad.id }) }}" data-name="{{ propiedad.name }}">
+            <div class="znv-col">
+                <div class="znv-header">{{ 'page.propiedades.labels.name' | trans }}:</div>
+                {{ propiedad.name }}
+            </div>
+             <div class="znv-col">
+                <div class="znv-header">{{ 'page.propiedades.labels.value' | trans }}:</div>
+                {{ propiedad.value }}
+            </div>         
+            <div class="znv-col-actions">
+                <div class="znv-group">                    
+                    {{ macro_listActionButton(path('propiedad_view', {'id' : propiedad.id}), 'page.list.buttons.view', 'fa-eye', ['ROLE_PROPIEDAD_VIEW']) }}
+                    {{ macro_listActionButton(path('propiedad_edit', {'id' : propiedad.id}), 'page.list.buttons.edit', 'fa-pencil', ['ROLE_PROPIEDAD_EDIT']) }}
+                    {{ macro_liConfirmButton('page.list.buttons.delete', 'znv-icon fa-trash', ['ROLE_PROPIEDAD_DELETE'], 'setNameAndText') }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock list %}

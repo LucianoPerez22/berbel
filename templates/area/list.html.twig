@@ -1,0 +1,44 @@
+{% extends 'global/layout_list.html.twig' %}
+
+{% set titlePage = "page.areas.title.list" | trans %}
+{% set menu = "areas" %}
+
+{% set formFilterAction = path('areas_list') %}
+{% set pathNew = path('area_new') %}
+{% set labelButtonNew = 'page.areas.buttons.add' %}
+{% set rolesNew = ['ROLE_AREA_NEW'] %}
+
+{% block list %}
+
+{# {{ dump(entities) }} #}
+    <div class="znv-header">
+        <div class="znv-col"> {{ 'page.areas.labels.name' | trans }}
+        </div>
+        <div class="znv-col"> {{ 'page.areas.labels.status' | trans }}
+        </div>       
+        <div class="znv-col-actions">
+        </div>
+    </div>
+
+    {% for area in entities %}
+        <div class="znv-line" data-path="{{ path('area_delete', { 'id' : area.id }) }}" data-name="{{ area.name }}">
+            <div class="znv-col">
+                <div class="znv-header">{{ 'page.areas.labels.name' | trans }}:</div>
+                {{ area.name }}
+            </div>
+             <div class="znv-col">
+                <div class="znv-header">{{ 'page.areas.labels.status' | trans }}:</div>
+                {{ area.status }}
+            </div>         
+            <div class="znv-col-actions">
+                <div class="znv-group">
+                    {{ macro_listActionButton(path('propiedad_list', {'id' : area.id}), 'page.list.buttons.propiedades', 'fas fa-list-ul', ['ROLE_PROPIEDAD_LIST']) }}
+                    {{ macro_listActionButton(path('area_view', {'id' : area.id}), 'page.list.buttons.view', 'fa-eye', ['ROLE_GROUP_VIEW']) }}
+                    {{ macro_listActionButton(path('area_edit', {'id' : area.id}), 'page.list.buttons.edit', 'fa-pencil', ['ROLE_GROUP_EDIT']) }}
+                    {{ macro_liConfirmButton('page.list.buttons.delete', 'znv-icon fa-trash', ['ROLE_GROUP_DELETE'], 'setNameAndText') }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock list %}
