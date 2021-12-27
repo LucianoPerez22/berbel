@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EmpleadosRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -51,6 +53,16 @@ class Empleados
      * @ORM\Column(type="string", length=255)
      */
     private $phone;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ParteDiario::class, mappedBy="empleado", orphanRemoval=true)
+     */
+    private $parteDiarios;
+
+    public function __construct()
+    {
+        $this->parteDiarios = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -137,6 +149,36 @@ class Empleados
     public function setPhone(string $phone): self
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ParteDiario[]
+     */
+    public function getParteDiarios(): Collection
+    {
+        return $this->parteDiarios;
+    }
+
+    public function addParteDiario(ParteDiario $parteDiario): self
+    {
+        if (!$this->parteDiarios->contains($parteDiario)) {
+            $this->parteDiarios[] = $parteDiario;
+            $parteDiario->setEmpleado($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParteDiario(ParteDiario $parteDiario): self
+    {
+        if ($this->parteDiarios->removeElement($parteDiario)) {
+            // set the owning side to null (unless already changed)
+            if ($parteDiario->getEmpleado() === $this) {
+                $parteDiario->setEmpleado(null);
+            }
+        }
 
         return $this;
     }

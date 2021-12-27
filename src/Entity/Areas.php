@@ -37,9 +37,15 @@ class Areas
      */
     private $propiedades;
 
+    /**
+     * @ORM\OneToMany(targetEntity=ParteDiario::class, mappedBy="Area", orphanRemoval=true)
+     */
+    private $parteDiarios;
+
     public function __construct()
     {
         $this->propiedades = new ArrayCollection();
+        $this->parteDiarios = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -95,6 +101,36 @@ class Areas
             // set the owning side to null (unless already changed)
             if ($propiedade->getArea() === $this) {
                 $propiedade->setArea(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ParteDiario[]
+     */
+    public function getParteDiarios(): Collection
+    {
+        return $this->parteDiarios;
+    }
+
+    public function addParteDiario(ParteDiario $parteDiario): self
+    {
+        if (!$this->parteDiarios->contains($parteDiario)) {
+            $this->parteDiarios[] = $parteDiario;
+            $parteDiario->setArea($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParteDiario(ParteDiario $parteDiario): self
+    {
+        if ($this->parteDiarios->removeElement($parteDiario)) {
+            // set the owning side to null (unless already changed)
+            if ($parteDiario->getArea() === $this) {
+                $parteDiario->setArea(null);
             }
         }
 
