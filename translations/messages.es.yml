@@ -148,6 +148,7 @@ page:
             view: Vista de Empleado
             edit: Edición de Empleado
             new: Nuevo Empleado
+            hour: Parte Diario
         labels:
             name: Nombre
             description: Descripción

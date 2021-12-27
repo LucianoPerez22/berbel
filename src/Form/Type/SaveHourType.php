@@ -15,16 +15,11 @@ class SaveHourType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('nombre', TextType::class, [])
             ->add('area', TextType::class, [])
-            ->add('state', TextType::class, [])
-            ->add('city', TextType::class, [])
-            ->add('address', TextType::class, [])
-            ->add('phone', TextType::class, [])
-            ->add('email', EmailType::class, [])
-            ->add('status', CheckboxType::class, array( 
-                'required' => true,
-                'attr' => array('checked' => 'checked'),
-            ));
+            ->add('fecha', TextType::class, [])
+            ->add('numero', TextType::class, [])
+           ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

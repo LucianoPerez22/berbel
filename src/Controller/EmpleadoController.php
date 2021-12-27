@@ -15,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use App\Form\Type\SaveEmpleadoType;
+use App\Form\Type\SaveHourType;
 
 class EmpleadoController extends BaseController
 {
@@ -132,17 +133,23 @@ class EmpleadoController extends BaseController
     }     
     
     /**
-     * @Route(path="/admin/empleado/hour", name="empleado_hour")
+     * @Route(path="/admin/empleado/{id}/hour", name="empleado_hour")
      * @Security("user.hasRole(['ROLE_EMPLEADOS_HOUR'])")
      * @param Request $request
      * @param SaveCommonFormHandler $handler
      * @return RedirectResponse|Response
      */
-    public function hourAction(Request $request, SaveCommonFormHandler $handler){
-        $empleado = new Empleados();       
+    public function hourAction(Request $request, SaveCommonFormHandler $handler, Empleados $empleadoId){
+        $empleadoRepository =  $this->getDoctrine()->getRepository(Empleados::class);
+        $empleado = $empleadoRepository->findOneBy(['id' => $empleadoId]);       
 
-        $handler->setClassFormType(SaveEmpleadoType::class);
-        $handler->createForm($empleado);
+        $empleadoInfo = array(
+            'id'    => $empleado->getId(),
+            'name'  => $empleado->getName()
+        );   
+        
+        $handler->setClassFormType(SaveHourType::class);
+        $handler->createForm(null, $empleadoInfo);
         
         if($handler->isSubmittedAndIsValidForm($request)){                
             try {                                                           
