@@ -307,6 +307,7 @@ $catalogue = new MessageCatalogue('es', array (
     'page.list.buttons.switch' => 'Cambiar',
     'page.list.buttons.delete' => 'Borrar',
     'page.list.buttons.propiedades' => 'Propiedades',
+    'page.list.buttons.work' => 'Cargar Hs',
     'page.list.pagination.show' => 'Mostrar',
     'page.list.pagination.records' => 'registros',
     'page.list.pagination.firstPage' => 'Primera',

@@ -143,14 +143,18 @@ class __TwigTemplate_723219e556b4f6a04127e0844365869b7e9006aa1adc76e569e16bba649
                 <div class=\"znv-group\">
                     ";
             // line 39
-            echo $this->extensions['App\Twig\MacroAutoloadTwigExtension']->twig_render_macro($this->env, $context, "listActionButton", [0 => $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("empleado_view", ["id" => twig_get_attribute($this->env, $this->source, $context["empleado"], "id", [], "any", false, false, false, 39)]), 1 => "page.list.buttons.view", 2 => "fa-eye", 3 => [0 => "ROLE_EMPLEADOS_VIEW"]]);
+            echo $this->extensions['App\Twig\MacroAutoloadTwigExtension']->twig_render_macro($this->env, $context, "listActionButton", [0 => $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("empleado_hour", ["id" => twig_get_attribute($this->env, $this->source, $context["empleado"], "id", [], "any", false, false, false, 39)]), 1 => "page.list.buttons.work", 2 => "fa-list", 3 => [0 => "ROLE_EMPLEADOS_HOUR"]]);
             echo "
                     ";
             // line 40
-            echo $this->extensions['App\Twig\MacroAutoloadTwigExtension']->twig_render_macro($this->env, $context, "listActionButton", [0 => $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("empleado_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["empleado"], "id", [], "any", false, false, false, 40)]), 1 => "page.list.buttons.edit", 2 => "fa-pencil", 3 => [0 => "ROLE_EMPLEADOS_EDIT"]]);
+            echo $this->extensions['App\Twig\MacroAutoloadTwigExtension']->twig_render_macro($this->env, $context, "listActionButton", [0 => $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("empleado_view", ["id" => twig_get_attribute($this->env, $this->source, $context["empleado"], "id", [], "any", false, false, false, 40)]), 1 => "page.list.buttons.view", 2 => "fa-eye", 3 => [0 => "ROLE_EMPLEADOS_VIEW"]]);
             echo "
                     ";
             // line 41
+            echo $this->extensions['App\Twig\MacroAutoloadTwigExtension']->twig_render_macro($this->env, $context, "listActionButton", [0 => $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("empleado_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["empleado"], "id", [], "any", false, false, false, 41)]), 1 => "page.list.buttons.edit", 2 => "fa-pencil", 3 => [0 => "ROLE_EMPLEADOS_EDIT"]]);
+            echo "
+                    ";
+            // line 42
             echo $this->extensions['App\Twig\MacroAutoloadTwigExtension']->twig_render_macro($this->env, $context, "liConfirmButton", [0 => "page.list.buttons.delete", 1 => "znv-icon fa-trash", 2 => [0 => "ROLE_EMPLEADOS_DELETE"], 3 => "setNameAndText"]);
             echo "
                 </div>
@@ -161,7 +165,7 @@ class __TwigTemplate_723219e556b4f6a04127e0844365869b7e9006aa1adc76e569e16bba649
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['empleado'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 46
+        // line 47
         echo "
 ";
         
@@ -184,7 +188,7 @@ class __TwigTemplate_723219e556b4f6a04127e0844365869b7e9006aa1adc76e569e16bba649
 
     public function getDebugInfo()
     {
-        return array (  165 => 46,  154 => 41,  150 => 40,  146 => 39,  139 => 35,  135 => 34,  129 => 31,  125 => 30,  119 => 27,  115 => 26,  107 => 24,  103 => 23,  94 => 17,  89 => 15,  84 => 13,  81 => 12,  71 => 11,  60 => 1,  58 => 9,  56 => 8,  54 => 7,  52 => 6,  50 => 4,  48 => 3,  35 => 1,);
+        return array (  169 => 47,  158 => 42,  154 => 41,  150 => 40,  146 => 39,  139 => 35,  135 => 34,  129 => 31,  125 => 30,  119 => 27,  115 => 26,  107 => 24,  103 => 23,  94 => 17,  89 => 15,  84 => 13,  81 => 12,  71 => 11,  60 => 1,  58 => 9,  56 => 8,  54 => 7,  52 => 6,  50 => 4,  48 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -227,6 +231,7 @@ class __TwigTemplate_723219e556b4f6a04127e0844365869b7e9006aa1adc76e569e16bba649
             </div>
             <div class=\"znv-col-actions\">
                 <div class=\"znv-group\">
+                    {{ macro_listActionButton(path('empleado_hour', {'id' : empleado.id}), 'page.list.buttons.work', 'fa-list', ['ROLE_EMPLEADOS_HOUR']) }}
                     {{ macro_listActionButton(path('empleado_view', {'id' : empleado.id}), 'page.list.buttons.view', 'fa-eye', ['ROLE_EMPLEADOS_VIEW']) }}
                     {{ macro_listActionButton(path('empleado_edit', {'id' : empleado.id}), 'page.list.buttons.edit', 'fa-pencil', ['ROLE_EMPLEADOS_EDIT']) }}
                     {{ macro_liConfirmButton('page.list.buttons.delete', 'znv-icon fa-trash', ['ROLE_EMPLEADOS_DELETE'], 'setNameAndText') }}

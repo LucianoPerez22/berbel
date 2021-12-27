@@ -81,6 +81,7 @@ page:
             switch: Cambiar
             delete: Borrar
             propiedades: Propiedades
+            work: Cargar Hs
         pagination:
             show: Mostrar
             records: registros

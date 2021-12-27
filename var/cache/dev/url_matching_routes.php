@@ -17,6 +17,7 @@ return [
         '/admin/area/new' => [[['_route' => 'area_new', '_controller' => 'App\\Controller\\AreaController::newAction'], null, null, null, false, false, null]],
         '/admin/empleados/list' => [[['_route' => 'empleados_list', '_controller' => 'App\\Controller\\EmpleadoController::listAction'], null, null, null, false, false, null]],
         '/admin/empleado/new' => [[['_route' => 'empleado_new', '_controller' => 'App\\Controller\\EmpleadoController::newAction'], null, null, null, false, false, null]],
+        '/admin/empleado/hour' => [[['_route' => 'empleado_hour', '_controller' => 'App\\Controller\\EmpleadoController::hourAction'], null, null, null, false, false, null]],
         '/admin/group/list' => [[['_route' => 'group_list', '_controller' => 'App\\Controller\\GroupController::listAction'], null, null, null, false, false, null]],
         '/admin/group' => [[['_route' => 'app_group_list', '_controller' => 'App\\Controller\\GroupController::listAction'], null, null, null, true, false, null]],
         '/admin/group/new' => [[['_route' => 'group_new', '_controller' => 'App\\Controller\\GroupController::newAction'], null, null, null, false, false, null]],

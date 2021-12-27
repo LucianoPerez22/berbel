@@ -775,3 +775,11 @@ a4218d,127.0.0.1,GET,http://localhost:8000/,1639057732,,200
 26d62a,::1,GET,http://localhost:8000/,1639057932,,200
 66569b,::1,GET,http://localhost:8000/build/css/style.min.css.map,1639057933,c9a063,404
 c9a063,::1,GET,http://localhost:8000/build/css/style.min.css.map,1639057933,,404
+9714ae,127.0.0.1,GET,http://localhost:8000/,1640606983,,200
+f78669,127.0.0.1,GET,http://localhost:8000/build/images/favicon.ico,1640606984,871805,404
+871805,127.0.0.1,GET,http://localhost:8000/build/images/favicon.ico,1640606984,,404
+8203f0,127.0.0.1,GET,http://localhost:8000/admin/empleados/list,1640606990,,200
+7a1fc0,127.0.0.1,GET,http://localhost:8000/admin/empleados/list,1640607057,,200
+e7e3a7,127.0.0.1,GET,http://localhost:8000/admin/empleados/list,1640607071,,200
+ab252c,127.0.0.1,GET,http://localhost:8000/admin/empleados/list,1640607119,,200
+c57045,127.0.0.1,GET,http://localhost:8000/admin/empleados/list,1640608106,,200

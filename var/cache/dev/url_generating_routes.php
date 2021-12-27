@@ -25,6 +25,7 @@ return [
     'empleado_new' => [[], ['_controller' => 'App\\Controller\\EmpleadoController::newAction'], [], [['text', '/admin/empleado/new']], [], []],
     'empleado_edit' => [['id'], ['_controller' => 'App\\Controller\\EmpleadoController::editAction'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'id', true], ['text', '/admin/empleado']], [], []],
     'empleado_delete' => [['id'], ['_controller' => 'App\\Controller\\EmpleadoController::deleteAction'], [], [['text', '/delete'], ['variable', '/', '[^/]++', 'id', true], ['text', '/admin/empleado']], [], []],
+    'empleado_hour' => [[], ['_controller' => 'App\\Controller\\EmpleadoController::hourAction'], [], [['text', '/admin/empleado/hour']], [], []],
     'group_list' => [[], ['_controller' => 'App\\Controller\\GroupController::listAction'], [], [['text', '/admin/group/list']], [], []],
     'app_group_list' => [[], ['_controller' => 'App\\Controller\\GroupController::listAction'], [], [['text', '/admin/group/']], [], []],
     'group_new' => [[], ['_controller' => 'App\\Controller\\GroupController::newAction'], [], [['text', '/admin/group/new']], [], []],

@@ -5,10 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Empleados;
 use App\Form\Filter\EmpleadosFilterType;
-use App\Form\Filter\GroupFilterType;
-use App\Form\Filter\UserFilterType;
 use App\Form\Handler\SaveCommonFormHandler;
-use App\Form\Handler\SaveUserFormHandler;
 use App\Zennovia\Common\BaseController;
 use App\Zennovia\Common\EntityManagerHelper;
 use App\Zennovia\Common\FindEntitiesHelper;
@@ -132,5 +129,45 @@ class EmpleadoController extends BaseController
         }
 
         return $this->redirectToRoute('empleados_list');
-    }       
+    }     
+    
+    /**
+     * @Route(path="/admin/empleado/hour", name="empleado_hour")
+     * @Security("user.hasRole(['ROLE_EMPLEADOS_HOUR'])")
+     * @param Request $request
+     * @param SaveCommonFormHandler $handler
+     * @return RedirectResponse|Response
+     */
+    public function hourAction(Request $request, SaveCommonFormHandler $handler){
+        $empleado = new Empleados();       
+
+        $handler->setClassFormType(SaveEmpleadoType::class);
+        $handler->createForm($empleado);
+        
+        if($handler->isSubmittedAndIsValidForm($request)){                
+            try {                                                           
+                if ($handler->processForm()) {
+                    $this->addFlashSuccess('flash.fieldtype.new.success');
+    
+                    return $this->redirectToRoute('empleados_list');
+                }               
+                
+            }catch (\Exception $e) {
+                $this->addFlashError('flash.fieldtype.new.error');
+                $this->addFlashError($e->getMessage());
+            }                           
+        }
+
+        return $this->render('empleado/hour.html.twig', array('form' => $handler->getForm()->createView()));
+
+        // // $em is your Doctrine\ORM\EntityManager instance
+        // $schemaManager = $em->getConnection()->getSchemaManager();
+        // // array of Doctrine\DBAL\Schema\Column
+        // $columns = $schemaManager->listTableColumns($tableName);
+
+        // $columnNames = [];
+        // foreach($columns as $column){
+        //     $columnNames[] = $column->getName();
+        // }
+    }
 }
