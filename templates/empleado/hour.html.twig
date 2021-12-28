@@ -6,7 +6,7 @@
 
 {% block formContent %}
     <div class="znv-half">
-        {{ form_row(form.nombre) }}
+        {{ form_row(form.empleado) }}
     </div>
     <div class="znv-half">
         {{ form_row(form.area) }}
@@ -17,4 +17,37 @@
     <div class="znv-half">
         {{ form_row(form.numero) }}
     </div>    
+
+    {# ## JQuery ## #}
+    <script>        
+        $(document).ready(function() {
+            $('#save_hour_area').on('change', function(e) {
+                var selectedArea = $(this).val();
+
+                console.log('Area: ' + selectedArea)
+                if (selectedArea) {
+                    loadAreaProperties(selectedArea);              
+                }
+                
+            });
+        })
+
+        function loadAreaProperties(areaId) {
+            if (areaId != null){                
+                 $.ajax({
+                url: "{{ path('ajax_form_area') }}" + '/' + areaId,
+                type: "GET",
+                success: function (data) {
+                    console.log(data)
+                    //$('#loadVarietiesByProduct').remove();
+                    //$('.js-select-variety').append(data).show();
+                    },
+                    error: function (err) {
+                    alert("An error ocurred while loading data ...");
+                }
+            });
+            }
+           
+        }
+    </script>
 {% endblock %}

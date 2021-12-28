@@ -3,7 +3,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Areas;
 use App\Entity\Empleados;
+use App\Entity\ParteDiario;
 use App\Form\Filter\EmpleadosFilterType;
 use App\Form\Handler\SaveCommonFormHandler;
 use App\Zennovia\Common\BaseController;
@@ -141,15 +143,19 @@ class EmpleadoController extends BaseController
      */
     public function hourAction(Request $request, SaveCommonFormHandler $handler, Empleados $empleadoId){
         $empleadoRepository =  $this->getDoctrine()->getRepository(Empleados::class);
-        $empleado = $empleadoRepository->findOneBy(['id' => $empleadoId]);       
+        $empleado = $empleadoRepository->findOneBy(['id' => $empleadoId]);             
 
-        $empleadoInfo = array(
+        $empleadoInfo['info'] = array(
             'id'    => $empleado->getId(),
             'name'  => $empleado->getName()
         );   
         
+        $parte = new ParteDiario();
+
+        $parte->setEmpleado($empleado);
+
         $handler->setClassFormType(SaveHourType::class);
-        $handler->createForm(null, $empleadoInfo);
+        $handler->createForm($parte, $empleadoInfo);
         
         if($handler->isSubmittedAndIsValidForm($request)){                
             try {                                                           
@@ -176,5 +182,22 @@ class EmpleadoController extends BaseController
         // foreach($columns as $column){
         //     $columnNames[] = $column->getName();
         // }
+    }
+
+    /**
+     * @Route(path="/admin/empleado/ajax/{area}", name="ajax_form_area")
+     * @Security("user.hasRole(['ROLE_EMPLEADOS_HOUR'])")
+     * @param Areas $area
+     * @return Response     
+     */
+    public function ajaxAreaAction(Areas $area = null){        
+        $propiedades = $area->getPropiedades();
+
+        $data = array();
+        foreach ($propiedades as $key => $value) {           
+            $data[$value->getName()] = $value->getValue();
+        }
+           
+        return new Response(json_encode($data));                     
     }
 }

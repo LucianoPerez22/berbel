@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\ParteDiarioRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=ParteDiarioRepository::class)
@@ -20,22 +22,26 @@ class ParteDiario
     /**
      * @ORM\ManyToOne(targetEntity=Empleados::class, inversedBy="parteDiarios")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $empleado;
 
     /**
      * @ORM\ManyToOne(targetEntity=Areas::class, inversedBy="parteDiarios")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $Area;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date")    
+     * @Assert\NotNull()
      */
     private $Fecha;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255)  
+     * @Assert\NotBlank()  
      */
     private $numero;
 
