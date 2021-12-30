@@ -16,7 +16,10 @@
     </div>
     <div class="znv-half">
         {{ form_row(form.numero) }}
-    </div>    
+    </div>
+    <div id="finForm" class="znv-full">
+       
+    </div>        
 
     {# ## JQuery ## #}
     <script>        
@@ -38,11 +41,15 @@
                 url: "{{ path('ajax_form_area') }}" + '/' + areaId,
                 type: "GET",
                 success: function (data) {
-                    console.log(data)
-                    //$('#loadVarietiesByProduct').remove();
-                    //$('.js-select-variety').append(data).show();
-                    },
-                    error: function (err) {
+                    console.log(data)                    
+                    let dataEmpleados = JSON.parse(data) ;
+           
+                    for (x of dataEmpleados) {
+                        $('#finForm').append(`<div class="znv-half"><div class="znv-form-group"><label for="${x.name + "ai"}" class="required">${ x.name }</label></div><div class="znv-group"><input type="text" id="${x.name + "ai"}" name="save_hourData[${x.name}]" required="required" class=" znv-form-control"></div></div>`);
+                    }
+                   
+                },
+                error: function (err) {
                     alert("An error ocurred while loading data ...");
                 }
             });

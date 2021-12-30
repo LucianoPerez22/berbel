@@ -157,7 +157,9 @@ class EmpleadoController extends BaseController
         $handler->setClassFormType(SaveHourType::class);
         $handler->createForm($parte, $empleadoInfo);
         
-        if($handler->isSubmittedAndIsValidForm($request)){                
+        if($handler->isSubmittedAndIsValidForm($request)){  
+            dump($request->request->all());
+            die();
             try {                                                           
                 if ($handler->processForm()) {
                     $this->addFlashSuccess('flash.fieldtype.new.success');
@@ -194,8 +196,12 @@ class EmpleadoController extends BaseController
         $propiedades = $area->getPropiedades();
 
         $data = array();
-        foreach ($propiedades as $key => $value) {           
-            $data[$value->getName()] = $value->getValue();
+        foreach ($propiedades as $key => $value) { 
+            array_push($data, array(
+                'name'  => $value->getName(),
+                'value' => $value->getValue()
+            ));
+                  
         }
            
         return new Response(json_encode($data));                     
