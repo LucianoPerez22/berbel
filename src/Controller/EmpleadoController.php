@@ -157,9 +157,13 @@ class EmpleadoController extends BaseController
         $handler->setClassFormType(SaveHourType::class);
         $handler->createForm($parte, $empleadoInfo);
         
+        $data = $request->request->all();
+        
+        isset($data['save_hourData']) ? $parte->setDatos($data['save_hourData']) : '';
+
+        //dump($request->request->all());
+        //die();
         if($handler->isSubmittedAndIsValidForm($request)){  
-            dump($request->request->all());
-            die();
             try {                                                           
                 if ($handler->processForm()) {
                     $this->addFlashSuccess('flash.fieldtype.new.success');
@@ -174,16 +178,6 @@ class EmpleadoController extends BaseController
         }
 
         return $this->render('empleado/hour.html.twig', array('form' => $handler->getForm()->createView()));
-
-        // // $em is your Doctrine\ORM\EntityManager instance
-        // $schemaManager = $em->getConnection()->getSchemaManager();
-        // // array of Doctrine\DBAL\Schema\Column
-        // $columns = $schemaManager->listTableColumns($tableName);
-
-        // $columnNames = [];
-        // foreach($columns as $column){
-        //     $columnNames[] = $column->getName();
-        // }
     }
 
     /**
@@ -205,5 +199,59 @@ class EmpleadoController extends BaseController
         }
            
         return new Response(json_encode($data));                     
+    }
+
+    /**
+     * @Route(path="/admin/empleado/{id}/reporte", name="empleado_reports")
+     * @Security("user.hasRole(['ROLE_EMPLEADOS_REPORT'])")
+     * @param Empleados $empleados
+     * @return Response
+     */
+    public function reportAction(Empleados $empleado)
+    {
+        //$data = $empleado->getParteDiarios();
+        //$partRepository = $this->getDoctrine()->getRepository(ParteDiario::class);
+        //$data           = $partRepository->findBy(array('empleado' => $empleado), array('area' => 'ASC'));
+
+        return $this->render('empleado/reportes.html.twig', ['empleado' => $empleado]);
+    }
+
+     /**
+     * @Route(path="/admin/empleado/ajax/{empleado}/{desde}/{hasta}", name="ajax_form_report")
+     * @Security("user.hasRole(['ROLE_EMPLEADOS_HOUR'])")
+     * @param Empleados $empleado
+     * @return Response     
+     */
+    public function ajaxReportAction(Empleados $empleado = null,\DateTime $desde = null,\DateTime $hasta = null){           
+        $data = $this->getDoctrine()->getRepository(ParteDiario::class)
+                                            ->findByFechas($empleado->getId(), $desde->format('Y-m-d'), $hasta->format('Y-m-d'));                                                       
+        
+                                                     
+         $diff = $desde->diff($hasta);
+         $i = 0;        
+         $control = count($data);
+         $fechaDesde =  $desde->format('Y-m-d');                     
+        
+        for ($i=0; $i <= intval($diff->days) ; $i++) {                  
+            for ($i1=0; $i1 < intval($control) ; $i1++) {        
+                $fechaData = date('Y-m-d', strtotime($data[$i1]['fecha']));  
+                $fechaRef = date('Y-m-d', strtotime($fechaDesde . ' +' . $i . ' day'));                                                                         
+                
+                if ($fechaRef <> $fechaData){                                                     
+                        $result = array_search($fechaRef, array_column($data,'fecha'));      
+                        
+                        if ($result === false ){
+                            array_unshift($data, ['fecha' => $fechaRef, 'numero' => 0, 'datos' => []]);
+                        }
+                }
+            }   
+                                                                                        
+        }
+        
+        usort($data, function($a, $b) {
+            return $a['fecha'] <=> $b['fecha'];
+        });
+       
+        return $this->render('empleado/reporteData.html.twig', ['data' => $data]);                 
     }
 }

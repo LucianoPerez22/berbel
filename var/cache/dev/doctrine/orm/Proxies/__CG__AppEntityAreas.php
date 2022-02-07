@@ -66,10 +66,10 @@ class Areas extends \App\Entity\Areas implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Areas' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Areas' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Areas' . "\0" . 'status', '' . "\0" . 'App\\Entity\\Areas' . "\0" . 'propiedades'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Areas' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Areas' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Areas' . "\0" . 'status', '' . "\0" . 'App\\Entity\\Areas' . "\0" . 'propiedades', '' . "\0" . 'App\\Entity\\Areas' . "\0" . 'parteDiarios'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Areas' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Areas' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Areas' . "\0" . 'status', '' . "\0" . 'App\\Entity\\Areas' . "\0" . 'propiedades'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Areas' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Areas' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Areas' . "\0" . 'status', '' . "\0" . 'App\\Entity\\Areas' . "\0" . 'propiedades', '' . "\0" . 'App\\Entity\\Areas' . "\0" . 'parteDiarios'];
     }
 
     /**
@@ -266,6 +266,39 @@ class Areas extends \App\Entity\Areas implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removePropiedade', [$propiedade]);
 
         return parent::removePropiedade($propiedade);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getParteDiarios(): \Doctrine\Common\Collections\Collection
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getParteDiarios', []);
+
+        return parent::getParteDiarios();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addParteDiario(\App\Entity\ParteDiario $parteDiario): \App\Entity\Areas
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addParteDiario', [$parteDiario]);
+
+        return parent::addParteDiario($parteDiario);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeParteDiario(\App\Entity\ParteDiario $parteDiario): \App\Entity\Areas
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeParteDiario', [$parteDiario]);
+
+        return parent::removeParteDiario($parteDiario);
     }
 
 }

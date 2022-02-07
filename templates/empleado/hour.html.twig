@@ -9,17 +9,14 @@
         {{ form_row(form.empleado) }}
     </div>
     <div class="znv-half">
-        {{ form_row(form.area) }}
-    </div>
-    <div class="znv-half">
         {{ form_row(form.fecha) }}
     </div>
-    <div class="znv-half">
+    <div class="znv-half mb-4">
         {{ form_row(form.numero) }}
-    </div>
-    <div id="finForm" class="znv-full">
-       
-    </div>        
+    </div> 
+    <div id="finForm" class="znv-half">
+        {{ form_row(form.area) }}
+    </div>     
 
     {# ## JQuery ## #}
     <script>        
@@ -27,34 +24,32 @@
             $('#save_hour_area').on('change', function(e) {
                 var selectedArea = $(this).val();
 
-                console.log('Area: ' + selectedArea)
+                //console.log('Area: ' + selectedArea)
                 if (selectedArea) {
                     loadAreaProperties(selectedArea);              
                 }
-                
             });
         })
 
         function loadAreaProperties(areaId) {
             if (areaId != null){                
                  $.ajax({
-                url: "{{ path('ajax_form_area') }}" + '/' + areaId,
-                type: "GET",
-                success: function (data) {
-                    console.log(data)                    
-                    let dataEmpleados = JSON.parse(data) ;
-           
-                    for (x of dataEmpleados) {
-                        $('#finForm').append(`<div class="znv-half"><div class="znv-form-group"><label for="${x.name + "ai"}" class="required">${ x.name }</label></div><div class="znv-group"><input type="text" id="${x.name + "ai"}" name="save_hourData[${x.name}]" required="required" class=" znv-form-control"></div></div>`);
+                    url: "{{ path('ajax_form_area') }}" + '/' + areaId,
+                    type: "GET",
+                    success: function (data) {
+                        console.log(data)                    
+                        let dataEmpleados = JSON.parse(data) ;
+                        
+                        //$('#save_hour_area').prop('disabled', 'disabled');
+                        for (x of dataEmpleados) {
+                            $('#finForm').after(`<div class="znv-half"><div class="znv-form-group"><label for="${x.name + "ai"}" class="required">${ x.name }</label><div class="znv-group"> <input type="text" id="${x.name + "ai"}" name="save_hourData[${x.name}]" value="${x.value}" required="required" class="znv-form-control"></div></div>`);
+                        }
+                    },
+                    error: function (err) {
+                        alert("An error ocurred while loading data ...");
                     }
-                   
-                },
-                error: function (err) {
-                    alert("An error ocurred while loading data ...");
-                }
-            });
+                 });
             }
-           
         }
     </script>
 {% endblock %}

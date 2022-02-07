@@ -1,0 +1,36 @@
+<br />
+{% for info in data %}
+    <h4 style="font-size: 1.5em"><span class="badge badge-info"><strong>Fecha: {{ info.fecha | date('d-m-Y') }} - Parte Numero: {{ info.numero}}</strong></span></h4>    
+    <div class="znv-card-full">           
+    <div class="znv-list-container">
+        <div class="znv-header">
+            <div class="znv-col "> {{ 'Item' }}
+            </div>
+            <div class="znv-col "> {{ 'Valor' }}
+            </div>                             
+        </div>
+         {% if info.datos| length == 0 %}
+            <div class="<znv-list-empty">
+                <h4>Sin Actividad</h4>
+            </div>
+            <hr />
+        {% endif %}
+        {% set fechaRef = info.fecha %}       
+    {% if fechaRef == info.fecha %}       
+        {% for key,value in info.datos %}          
+            <div class="znv-line">
+                <div class="znv-col">
+                    <div class="znv-header">{{ 'Item' }}</div>                                                 
+                            {{ value.clave }} 
+                </div>
+
+                <div class="znv-col">
+                    <div class="znv-header">{{ 'Valor' }}</div>                                                                                                                      
+                        {{ value.valor }}  
+                </div>                                                             
+            </div>          
+        {% endfor %}
+    {% endif %}
+        </div>
+    </div>   
+{% endfor %}
