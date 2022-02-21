@@ -32,7 +32,7 @@ class Propiedades
     private $name;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      */
     private $value;
@@ -66,14 +66,14 @@ class Propiedades
         return $this;
     }
 
-    public function getValue(): ?float
+    public function getValue(): ?string
     {
         return $this->value;
     }
 
-    public function setValue(?float $value): self
+    public function setValue(?string $value): self
     {
-        $this->value = (float) $value;
+        $this->value =  $value;
 
         return $this;
     }

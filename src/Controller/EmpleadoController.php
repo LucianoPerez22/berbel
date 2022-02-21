@@ -18,9 +18,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use App\Form\Type\SaveEmpleadoType;
 use App\Form\Type\SaveHourType;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class EmpleadoController extends BaseController
-{
+{   
     /**
      * @Route(path="/admin/empleados/list", name="empleados_list")
      * @Security("user.hasRole(['ROLE_USER'])")
@@ -160,9 +162,7 @@ class EmpleadoController extends BaseController
         $data = $request->request->all();
         
         isset($data['save_hourData']) ? $parte->setDatos($data['save_hourData']) : '';
-
-        //dump($request->request->all());
-        //die();
+       
         if($handler->isSubmittedAndIsValidForm($request)){  
             try {                                                           
                 if ($handler->processForm()) {
@@ -251,7 +251,128 @@ class EmpleadoController extends BaseController
         usort($data, function($a, $b) {
             return $a['fecha'] <=> $b['fecha'];
         });
-       
-        return $this->render('empleado/reporteData.html.twig', ['data' => $data]);                 
+      
+        $headers = [];
+        foreach ($data as $key => $value) {
+            $contador = count($value['datos']);
+            if ($contador != 0){
+                foreach ($value['datos'] as $keyV => $valueV) {                    
+                    $headers[$keyV] = $valueV;
+                }                
+            }
+        }     
+               
+        return $this->render('empleado/reporteData.html.twig', [
+                'data'      => $data, 
+                'headers'   => $headers,
+                'empleado'  => $empleado,
+                'desde'     => $desde->format('Y-m-d'),
+                'hasta'     => $hasta->format('Y-m-d')
+            ]);                 
+    }
+
+    /**
+     * @Route("/export/{empleado}/{desde}/{hasta}",  name="export")     
+     */
+    public function export(Empleados $empleado = null,\DateTime $desde = null,\DateTime $hasta = null)
+    {
+        $data = $this->getDoctrine()->getRepository(ParteDiario::class)
+                    ->findByFechas($empleado->getId(), $desde->format('Y-m-d'), $hasta->format('Y-m-d'));                                                       
+
+                 
+        $diff = $desde->diff($hasta);
+        $i = 0;        
+        $control = count($data);
+        $fechaDesde =  $desde->format('Y-m-d');                     
+
+        for ($i=0; $i <= intval($diff->days) ; $i++) {                  
+            for ($i1=0; $i1 < intval($control) ; $i1++) {        
+                $fechaData = date('Y-m-d', strtotime($data[$i1]['fecha']));  
+                $fechaRef = date('Y-m-d', strtotime($fechaDesde . ' +' . $i . ' day'));                                                                         
+
+                if ($fechaRef <> $fechaData){                                                     
+                    $result = array_search($fechaRef, array_column($data,'fecha'));      
+
+                        if ($result === false ){
+                        array_unshift($data, ['fecha' => $fechaRef, 'numero' => 0, 'datos' => []]);
+                        }
+                }
+            }   
+                                                            
+        }
+
+        usort($data, function($a, $b) {
+        return $a['fecha'] <=> $b['fecha'];
+        });
+
+        $headers = [];
+        foreach ($data as $key => $value) {
+            $contador = count($value['datos']);
+            if ($contador != 0){
+                foreach ($value['datos'] as $keyV => $valueV) {                    
+                $headers[$keyV] = $valueV;
+                }                
+            }
+        }     
+
+        //dump($data);
+
+        //dump($headers);
+        //die;
+        
+        $spreadsheet = new Spreadsheet();
+
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $sheet->setTitle('Reporte');
+
+         $sheet->getCell('A1')->setValue('Nombre');
+         $sheet->getCell('B1')->setValue($empleado->getName());
+         $sheet->getCell('A2')->setValue('Direccion');
+         $sheet->getCell('B2')->setValue($empleado->getAddress());
+         $sheet->getCell('A3')->setValue('Email');
+         $sheet->getCell('B3')->setValue($empleado->getEmail());        
+        
+         $celda = 'B';
+         $valor = 5;
+
+         for ($i=0; $i < count($data) ; $i++) { 
+            $sheet->getCell('A' . $valor)->setValue('Fecha');
+            $sheet->getCell('A'. intval($valor+1))->setValue($data[$i]['fecha']);
+          
+            if (count($data[$i]['datos']) == 0){               
+                for ($i_Datos=0; $i_Datos <count($headers) ; $i_Datos++) { 
+                    $sheet->getCell($celda . $valor)->setValue($headers[$i_Datos]['clave']);                    
+
+                    $sheet->getCell($celda . intval($valor + 1))->setValue('No trabajado');    
+                    $celda++; 
+
+                   
+                }  
+                $valor = $valor+2;                                                                                    
+            }else{
+                foreach ($data[$i]['datos'] as $key => $value) {                   
+                    $sheet->getCell($celda . $valor)->setValue($value['clave']);                    
+
+                    $sheet->getCell($celda . intval($valor + 1))->setValue($value['valor']);    
+                     $celda++; 
+                     
+                }    
+                $valor = $valor+2;            
+
+            }
+         }
+                                        
+        
+
+        $writer = new Xlsx($spreadsheet);        
+
+         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+         header('Content-Disposition: attachment;filename="reporte.xls"');
+
+         ob_end_clean();
+         $writer->save('php://output');
+        
+        return $this->redirectToRoute('home');
     }
 }
