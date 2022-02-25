@@ -29,6 +29,7 @@ return [
     'ajax_form_area' => [['area'], ['area' => null, '_controller' => 'App\\Controller\\EmpleadoController::ajaxAreaAction'], [], [['variable', '/', '[^/]++', 'area', true], ['text', '/admin/empleado/ajax']], [], []],
     'empleado_reports' => [['id'], ['_controller' => 'App\\Controller\\EmpleadoController::reportAction'], [], [['text', '/reporte'], ['variable', '/', '[^/]++', 'id', true], ['text', '/admin/empleado']], [], []],
     'ajax_form_report' => [['empleado', 'desde', 'hasta'], ['empleado' => null, 'desde' => null, 'hasta' => null, '_controller' => 'App\\Controller\\EmpleadoController::ajaxReportAction'], [], [['variable', '/', '[^/]++', 'hasta', true], ['variable', '/', '[^/]++', 'desde', true], ['variable', '/', '[^/]++', 'empleado', true], ['text', '/admin/empleado/ajax']], [], []],
+    'export' => [['empleado', 'desde', 'hasta'], ['empleado' => null, 'desde' => null, 'hasta' => null, '_controller' => 'App\\Controller\\EmpleadoController::export'], [], [['variable', '/', '[^/]++', 'hasta', true], ['variable', '/', '[^/]++', 'desde', true], ['variable', '/', '[^/]++', 'empleado', true], ['text', '/export']], [], []],
     'group_list' => [[], ['_controller' => 'App\\Controller\\GroupController::listAction'], [], [['text', '/admin/group/list']], [], []],
     'app_group_list' => [[], ['_controller' => 'App\\Controller\\GroupController::listAction'], [], [['text', '/admin/group/']], [], []],
     'group_new' => [[], ['_controller' => 'App\\Controller\\GroupController::newAction'], [], [['text', '/admin/group/new']], [], []],

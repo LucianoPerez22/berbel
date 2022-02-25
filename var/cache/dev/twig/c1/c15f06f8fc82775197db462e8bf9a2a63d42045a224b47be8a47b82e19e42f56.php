@@ -72,7 +72,7 @@ class __TwigTemplate_ae8bd897fa56d41992f7c492e0fd289c359480f4dd0c6bc9011ed418897
                                         ¡";
         // line 30
         echo $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("registration.message.welcome", [], "email");
-        echo " Zennovia Skeleton!
+        echo " Gruas Berbel!
                                     </h1>
                                 </td>
                             </tr>
@@ -193,7 +193,7 @@ class __TwigTemplate_ae8bd897fa56d41992f7c492e0fd289c359480f4dd0c6bc9011ed418897
                             <tr>
                                 <td align=\"center\">
                                     <h1 style=\"color:#444444;font-family:Helvetica,Arial,sans-serif;font-size:28px;font-weight:normal;line-height:32px;margin:0; margin-bottom: 10px; padding-top:10px; padding-bottom: 10px;text-align:center;word-wrap:normal\">
-                                        ¡{{ 'registration.message.welcome' | trans({}, 'email') | raw}} Zennovia Skeleton!
+                                        ¡{{ 'registration.message.welcome' | trans({}, 'email') | raw}} Gruas Berbel!
                                     </h1>
                                 </td>
                             </tr>

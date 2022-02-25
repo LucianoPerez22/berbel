@@ -47,22 +47,9 @@ class ParteDiarioRepository extends ServiceEntityRepository
                 $info[$key]['datos'][$i]['valor'] = $value1;
                 $i++;
             }
-            //die;
         }
 
         return $info;
         
-    }
-    
-    /*
-    public function findOneBySomeField($value): ?ParteDiario
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+    }      
 }

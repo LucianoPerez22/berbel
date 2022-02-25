@@ -83,9 +83,10 @@ return [
                         .')'
                     .')'
                 .')'
+                .'|/export(?:/([^/]++)(?:/([^/]++)(?:/([^/]++))?)?)?(*:683)'
                 .'|/re(?'
-                    .'|gistration/([^/]++)(*:659)'
-                    .'|set\\-password/([^/]++)(*:689)'
+                    .'|gistration/([^/]++)(*:716)'
+                    .'|set\\-password/([^/]++)(*:746)'
                 .')'
             .')/?$}sDu',
     ],
@@ -118,8 +119,9 @@ return [
         577 => [[['_route' => 'user_view', '_controller' => 'App\\Controller\\UserController::viewAction'], ['id'], null, null, false, false, null]],
         592 => [[['_route' => 'user_edit', '_controller' => 'App\\Controller\\UserController::editAction'], ['id'], null, null, false, false, null]],
         623 => [[['_route' => 'user_enable_disable', '_controller' => 'App\\Controller\\UserController::enableDisableAction'], ['id', 'value'], null, null, false, true, null]],
-        659 => [[['_route' => 'user_registration', '_controller' => 'App\\Controller\\UserController::registrationAction'], ['hash'], null, null, false, true, null]],
-        689 => [
+        683 => [[['_route' => 'export', 'empleado' => null, 'desde' => null, 'hasta' => null, '_controller' => 'App\\Controller\\EmpleadoController::export'], ['empleado', 'desde', 'hasta'], null, null, false, true, null]],
+        716 => [[['_route' => 'user_registration', '_controller' => 'App\\Controller\\UserController::registrationAction'], ['hash'], null, null, false, true, null]],
+        746 => [
             [['_route' => 'user_reset_password', '_controller' => 'App\\Controller\\UserController::resetPasswordAction'], ['hash'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

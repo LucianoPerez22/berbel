@@ -1,6 +1,4 @@
 <?php
-
-
 namespace App\Controller;
 
 use App\Entity\Areas;
@@ -314,11 +312,6 @@ class EmpleadoController extends BaseController
                 }                
             }
         }     
-
-        //dump($data);
-
-        //dump($headers);
-        //die;
         
         $spreadsheet = new Spreadsheet();
 
@@ -332,38 +325,38 @@ class EmpleadoController extends BaseController
          $sheet->getCell('B2')->setValue($empleado->getAddress());
          $sheet->getCell('A3')->setValue('Email');
          $sheet->getCell('B3')->setValue($empleado->getEmail());        
-        
-         $celda = 'B';
-         $valor = 5;
 
-         for ($i=0; $i < count($data) ; $i++) { 
-            $sheet->getCell('A' . $valor)->setValue('Fecha');
+         //dump($headers); die;
+         define('CELDA', 'B');
+         $valor = 5;
+         $sheet->getCell('A' . $valor)->setValue('Fecha');
+
+         $celdaSoporte = CELDA;
+         for ($i_Datos=0; $i_Datos <count($headers) ; $i_Datos++) { 
+             $sheet->getCell($celdaSoporte . $valor)->setValue($headers[$i_Datos]['clave']);   
+             $celdaSoporte++;  
+         }
+
+         for ($i=0; $i < count($data) ; $i++) {             
             $sheet->getCell('A'. intval($valor+1))->setValue($data[$i]['fecha']);
-          
+                      
+            $celdaSoporte = CELDA;
             if (count($data[$i]['datos']) == 0){               
                 for ($i_Datos=0; $i_Datos <count($headers) ; $i_Datos++) { 
-                    $sheet->getCell($celda . $valor)->setValue($headers[$i_Datos]['clave']);                    
-
-                    $sheet->getCell($celda . intval($valor + 1))->setValue('No trabajado');    
-                    $celda++; 
-
-                   
+                    //$sheet->getCell($celdaSoporte . $valor)->setValue($headers[$i_Datos]['clave']);                    
+                    $sheet->getCell($celdaSoporte . intval($valor + 1))->setValue('No trabajado');                                          
+                    $celdaSoporte++; 
                 }  
-                $valor = $valor+2;                                                                                    
+                $valor = $valor+1;                                                                                    
             }else{
                 foreach ($data[$i]['datos'] as $key => $value) {                   
-                    $sheet->getCell($celda . $valor)->setValue($value['clave']);                    
-
-                    $sheet->getCell($celda . intval($valor + 1))->setValue($value['valor']);    
-                     $celda++; 
-                     
+                    //$sheet->getCell($celdaSoporte . $valor)->setValue($value['clave']);                    
+                    $sheet->getCell($celdaSoporte . intval($valor + 1))->setValue($value['valor']);    
+                     $celdaSoporte++;                      
                 }    
-                $valor = $valor+2;            
-
+                $valor = $valor+1;                            
             }
-         }
-                                        
-        
+         }                                                
 
         $writer = new Xlsx($spreadsheet);        
 
