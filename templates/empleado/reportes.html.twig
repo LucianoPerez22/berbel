@@ -1,0 +1,52 @@
+{% extends 'global/layout_view.html.twig' %}
+
+{% set titlePage = "page.user.title.view" | trans %}
+{% set menu = "empleados" %}
+
+{% block buttonsTitle %}
+{% set referer = (app.request.server.get('HTTP_REFERER') is not null ?
+            app.request.server.get('HTTP_REFERER')|default('/') :
+            path('empleados_list')) %}
+<li>
+    {{ macro_buttonReturn(referer) }}
+</li>
+{% endblock %}
+
+{% block viewContent %}
+<div class="znv-card-full znv-highlight">
+    <div class="znv-form-group-view">
+        <p>{{ 'page.user.labels.name'|trans }}</p>
+        <h3>{{ empleado.name }}</h3>
+    </div>
+</div>
+
+<div class="znv-card-full znv-two-column">
+  {{ macro_cardHalfView('Direccion', empleado.address) }}
+  {{ macro_cardHalfView('Telefono', empleado.phone) }} 
+</div>
+
+  <p>Desde: <input id="desde" type="date" name="fechaesperada">  Hasta: <input id="hasta" type="date" name="fechaesperada"> <input id="fechas" type="submit" value="Enviar datos"></p>
+
+<div id="divReport"></div>
+{# ## JQuery ## #}
+<script>        
+    $(document).ready(function() {
+        $('#fechas').on('click', function(e) {
+            let desde = $('#desde').val()
+            let hasta = $('#hasta').val()
+            
+            $.ajax({
+                    url: "{{ path('ajax_form_report') }}" + '/' + {{ empleado.id }} + '/' + desde + '/' + hasta,
+                    type: "GET",
+                    success: function (data) {                                                                   
+                        $('#divReport').html(data) 
+                        console.log(data)                                               
+                    },
+                    error: function (err) {
+                        alert("An error ocurred while loading data ...");
+                    }
+                 });
+        });
+    })
+</script>
+{% endblock %}

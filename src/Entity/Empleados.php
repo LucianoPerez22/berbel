@@ -6,6 +6,7 @@ use App\Repository\EmpleadosRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EmpleadosRepository::class)
@@ -18,6 +19,17 @@ class Empleados
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\Column(type="date", nullable=false)  
+     * @Assert\NotNull
+     */
+    private $fechaIngreso;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $cuil;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -37,12 +49,7 @@ class Empleados
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $email;
-
-    /**
-     * @ORM\Column(type="boolean", length=255)
-     */
-    private $status;
+    private $email;    
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -115,19 +122,7 @@ class Empleados
         $this->email = $email;
 
         return $this;
-    }
-
-    public function getStatus(): ?bool
-    {
-        return $this->status;
-    }
-
-    public function setStatus(bool $status): self
-    {
-        $this->status = $status;
-
-        return $this;
-    }
+    }    
 
     public function getCity(): ?string
     {
@@ -149,6 +144,30 @@ class Empleados
     public function setPhone(string $phone): self
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getCuil(): ?string
+    {
+        return $this->cuil;
+    }
+
+    public function setCuil(string $cuil): self
+    {
+        $this->cuil = $cuil;
+
+        return $this;
+    }
+
+    public function getFechaIngreso(): ?\DateTimeInterface
+    {
+        return $this->fechaIngreso;
+    }
+
+    public function setFechaIngreso(\DateTimeInterface $fechaIngreso): self
+    {
+        $this->fechaIngreso = $fechaIngreso;
 
         return $this;
     }

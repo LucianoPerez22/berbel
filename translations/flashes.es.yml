@@ -76,3 +76,14 @@ flash:
         delete:
             success: Propiedad eliminada con éxito
             error: Esta Propiedad está relacionado con otra entidad. No se puede quitar
+    
+    hour:
+        new:
+            success: Parte Diario guardado correctamente
+            error: Se produjo un error al intentar guardar el Parte Diario
+        edit:
+            success: Parte Diario editado con éxito.
+            error: Se produjo un error al intentar editar el Parte Diario
+        delete:
+            success: Parte Diario eliminado con éxito
+            error: Este Parte Diario está relacionado con otra entidad. No se puede quitar

@@ -82,6 +82,7 @@ page:
             delete: Borrar
             propiedades: Propiedades
             work: Cargar Hs
+            report: Reporte
         pagination:
             show: Mostrar
             records: registros

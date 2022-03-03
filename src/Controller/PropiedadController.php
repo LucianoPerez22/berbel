@@ -21,7 +21,7 @@ class PropiedadController extends BaseController
 {
     /**
      * @Route(path="/admin/propiedad/{id}/list/", name="propiedad_list")
-     * @Security("user.hasRole(['ROLE_PROPIEDAD_LIST'])")
+     * @Security("user.hasRole(['ROLE_PROPIEDADES_LIST'])")
      * @param Areas $area
      * @param FindEntitiesHelper $helper
      * @return Response
@@ -40,7 +40,7 @@ class PropiedadController extends BaseController
 
     /**
      * @Route(path="/admin/propiedad/{id}/view", name="propiedad_view")
-     * @Security("user.hasRole(['ROLE_PROPIEDAD_VIEW'])")
+     * @Security("user.hasRole(['ROLE_PROPIEDADES_VIEW'])")
      * @param Propiedades $propiedad
      * @return Response
      */
@@ -51,7 +51,7 @@ class PropiedadController extends BaseController
 
     /**
      * @Route(path="/admin/propiedad/{id}/new", name="propiedad_new")
-     * @Security("user.hasRole(['ROLE_PROPIEDAD_NEW'])")
+     * @Security("user.hasRole(['ROLE_PROPIEDADES_NEW'])")
      * @param Areas $area
      * @param Request $request
      * @param SaveCommonFormHandler $handler
@@ -87,7 +87,7 @@ class PropiedadController extends BaseController
 
     /**
      * @Route(path="/admin/propiedad/{id}/edit", name="propiedad_edit")
-     * @Security("user.hasRole(['ROLE_PROPIEDAD_EDIT'])")
+     * @Security("user.hasRole(['ROLE_PROPIEDADES_EDIT'])")
      * @param Propiedades $entity
      * @param Request $request
      * @param SaveCommonFormHandler $handler
@@ -119,7 +119,7 @@ class PropiedadController extends BaseController
 
    /**     
      * @Route(path="/admin/propiedad/{id}/delete", name="propiedad_delete")
-     * @Security("user.hasRole(['ROLE_PROPIEDAD_DELETE'])")
+     * @Security("user.hasRole(['ROLE_PROPIEDADES_DELETE'])")
      * @param Propiedades $entity
      * @param EntityManagerHelper $helper
      * @return RedirectResponse

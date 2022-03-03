@@ -37,7 +37,7 @@ class AreaController extends BaseController
 
     /**
      * @Route(path="/admin/area/new", name="area_new")
-     * @Security("user.hasRole(['ROLE_AREA_NEW'])")
+     * @Security("user.hasRole(['ROLE_AREAS_NEW'])")
      * @param Request $request
      * @param SaveCommonFormHandler $handler
      * @return RedirectResponse|Response
@@ -67,7 +67,7 @@ class AreaController extends BaseController
 
      /**
      * @Route(path="/admin/area/{id}/edit", name="area_edit")
-     * @Security("user.hasRole(['ROLE_AREA_EDIT'])")
+     * @Security("user.hasRole(['ROLE_AREAS_EDIT'])")
      * @param Areas $entity
      * @param Request $request
      * @param SaveCommonFormHandler $handler
@@ -99,7 +99,7 @@ class AreaController extends BaseController
 
      /**
      * @Route(path="/admin/area/{id}/view", name="area_view")
-     * @Security("user.hasRole(['ROLE_AREA_VIEW'])")
+     * @Security("user.hasRole(['ROLE_AREAS_VIEW'])")
      * @param Areas $area
      * @return Response
      */
@@ -110,7 +110,7 @@ class AreaController extends BaseController
 
     /**   
      * @Route(path="/admin/area/{id}/delete", name="area_delete")
-     * @Security("user.hasRole(['ROLE_AREA_DELETE'])")
+     * @Security("user.hasRole(['ROLE_AREAS_DELETE'])")
      * @param Areas $entity
      * @param EntityManagerHelper $helper
      * @return RedirectResponse
