@@ -15,7 +15,7 @@ class SavePropiedadType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, ['empty_data' => ''])           
-            ->add('value', TextType::class, ['empty_data' => ''])                                    
+            ->add('value', NumberType::class, ['empty_data' => ''])                                    
         ;
     }
 

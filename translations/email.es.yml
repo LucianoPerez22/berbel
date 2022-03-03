@@ -2,7 +2,7 @@ registration:
     message:
         subject: Registración para Zennovia Skeleton
         welcome: Bienvenido a
-        explanation: Si recibe este correo es porque Gruas Berbel ha registrado este correo para <strong> crear un usuario para usted en el sistema. </strong>
+        explanation: Si recibe este correo es porque Zennovia Skeleton ha registrado este correo para <strong> crear un usuario para usted en el sistema. </strong>
         next_step: Seleccione el siguiente enlace y siga los pasos correspondientes para finalizar el proceso de registro de usuarios
         greeting: Atentamente
         email_empty: El usuario no tiene un correo electrónico configurado

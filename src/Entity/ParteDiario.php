@@ -29,19 +29,19 @@ class ParteDiario
     /**
      * @ORM\ManyToOne(targetEntity=Areas::class, inversedBy="parteDiarios")
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\NotNull
+     * @Assert\NotBlank()
      */
     private $Area;
 
     /**
-     * @ORM\Column(type="date", nullable=false)  
-     * @Assert\NotNull
+     * @ORM\Column(type="date")    
+     * @Assert\NotNull()
      */
     private $Fecha;
 
     /**
      * @ORM\Column(type="string", length=255)  
-     * @Assert\NotBlank
+     * @Assert\NotBlank()  
      */
     private $numero;
 

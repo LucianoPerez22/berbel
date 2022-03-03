@@ -1,4 +1,6 @@
 <?php
+
+
 namespace App\Controller;
 
 use App\Entity\Areas;
@@ -16,11 +18,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use App\Form\Type\SaveEmpleadoType;
 use App\Form\Type\SaveHourType;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class EmpleadoController extends BaseController
-{   
+{
     /**
      * @Route(path="/admin/empleados/list", name="empleados_list")
      * @Security("user.hasRole(['ROLE_USER'])")
@@ -157,11 +157,9 @@ class EmpleadoController extends BaseController
         $handler->setClassFormType(SaveHourType::class);
         $handler->createForm($parte, $empleadoInfo);
         
-        $data = $request->request->all();
-        
-        isset($data['save_hourData']) ? $parte->setDatos($data['save_hourData']) : '';
-       
         if($handler->isSubmittedAndIsValidForm($request)){  
+            dump($request->request->all());
+            die();
             try {                                                           
                 if ($handler->processForm()) {
                     $this->addFlashSuccess('flash.fieldtype.new.success');
@@ -176,6 +174,16 @@ class EmpleadoController extends BaseController
         }
 
         return $this->render('empleado/hour.html.twig', array('form' => $handler->getForm()->createView()));
+
+        // // $em is your Doctrine\ORM\EntityManager instance
+        // $schemaManager = $em->getConnection()->getSchemaManager();
+        // // array of Doctrine\DBAL\Schema\Column
+        // $columns = $schemaManager->listTableColumns($tableName);
+
+        // $columnNames = [];
+        // foreach($columns as $column){
+        //     $columnNames[] = $column->getName();
+        // }
     }
 
     /**
@@ -197,175 +205,5 @@ class EmpleadoController extends BaseController
         }
            
         return new Response(json_encode($data));                     
-    }
-
-    /**
-     * @Route(path="/admin/empleado/{id}/reporte", name="empleado_reports")
-     * @Security("user.hasRole(['ROLE_EMPLEADOS_REPORT'])")
-     * @param Empleados $empleados
-     * @return Response
-     */
-    public function reportAction(Empleados $empleado)
-    {
-        //$data = $empleado->getParteDiarios();
-        //$partRepository = $this->getDoctrine()->getRepository(ParteDiario::class);
-        //$data           = $partRepository->findBy(array('empleado' => $empleado), array('area' => 'ASC'));
-
-        return $this->render('empleado/reportes.html.twig', ['empleado' => $empleado]);
-    }
-
-     /**
-     * @Route(path="/admin/empleado/ajax/{empleado}/{desde}/{hasta}", name="ajax_form_report")
-     * @Security("user.hasRole(['ROLE_EMPLEADOS_HOUR'])")
-     * @param Empleados $empleado
-     * @return Response     
-     */
-    public function ajaxReportAction(Empleados $empleado = null,\DateTime $desde = null,\DateTime $hasta = null){           
-        $data = $this->getDoctrine()->getRepository(ParteDiario::class)
-                                            ->findByFechas($empleado->getId(), $desde->format('Y-m-d'), $hasta->format('Y-m-d'));                                                       
-        
-                                                     
-         $diff = $desde->diff($hasta);
-         $i = 0;        
-         $control = count($data);
-         $fechaDesde =  $desde->format('Y-m-d');                     
-        
-        for ($i=0; $i <= intval($diff->days) ; $i++) {                  
-            for ($i1=0; $i1 < intval($control) ; $i1++) {        
-                $fechaData = date('Y-m-d', strtotime($data[$i1]['fecha']));  
-                $fechaRef = date('Y-m-d', strtotime($fechaDesde . ' +' . $i . ' day'));                                                                         
-                
-                if ($fechaRef <> $fechaData){                                                     
-                        $result = array_search($fechaRef, array_column($data,'fecha'));      
-                        
-                        if ($result === false ){
-                            array_unshift($data, ['fecha' => $fechaRef, 'numero' => 0, 'datos' => []]);
-                        }
-                }
-            }   
-                                                                                        
-        }
-        
-        usort($data, function($a, $b) {
-            return $a['fecha'] <=> $b['fecha'];
-        });
-      
-        $headers = [];
-        foreach ($data as $key => $value) {
-            $contador = count($value['datos']);
-            if ($contador != 0){
-                foreach ($value['datos'] as $keyV => $valueV) {                    
-                    $headers[$keyV] = $valueV;
-                }                
-            }
-        }     
-               
-        return $this->render('empleado/reporteData.html.twig', [
-                'data'      => $data, 
-                'headers'   => $headers,
-                'empleado'  => $empleado,
-                'desde'     => $desde->format('Y-m-d'),
-                'hasta'     => $hasta->format('Y-m-d')
-            ]);                 
-    }
-
-    /**
-     * @Route("/export/{empleado}/{desde}/{hasta}",  name="export")     
-     */
-    public function export(Empleados $empleado = null,\DateTime $desde = null,\DateTime $hasta = null)
-    {
-        $data = $this->getDoctrine()->getRepository(ParteDiario::class)
-                    ->findByFechas($empleado->getId(), $desde->format('Y-m-d'), $hasta->format('Y-m-d'));                                                       
-
-                 
-        $diff = $desde->diff($hasta);
-        $i = 0;        
-        $control = count($data);
-        $fechaDesde =  $desde->format('Y-m-d');                     
-
-        for ($i=0; $i <= intval($diff->days) ; $i++) {                  
-            for ($i1=0; $i1 < intval($control) ; $i1++) {        
-                $fechaData = date('Y-m-d', strtotime($data[$i1]['fecha']));  
-                $fechaRef = date('Y-m-d', strtotime($fechaDesde . ' +' . $i . ' day'));                                                                         
-
-                if ($fechaRef <> $fechaData){                                                     
-                    $result = array_search($fechaRef, array_column($data,'fecha'));      
-
-                        if ($result === false ){
-                        array_unshift($data, ['fecha' => $fechaRef, 'numero' => 0, 'datos' => []]);
-                        }
-                }
-            }   
-                                                            
-        }
-
-        usort($data, function($a, $b) {
-        return $a['fecha'] <=> $b['fecha'];
-        });
-
-        $headers = [];
-        foreach ($data as $key => $value) {
-            $contador = count($value['datos']);
-            if ($contador != 0){
-                foreach ($value['datos'] as $keyV => $valueV) {                    
-                $headers[$keyV] = $valueV;
-                }                
-            }
-        }     
-        
-        $spreadsheet = new Spreadsheet();
-
-        $sheet = $spreadsheet->getActiveSheet();
-
-        $sheet->setTitle('Reporte');
-
-         $sheet->getCell('A1')->setValue('Nombre');
-         $sheet->getCell('B1')->setValue($empleado->getName());
-         $sheet->getCell('A2')->setValue('Direccion');
-         $sheet->getCell('B2')->setValue($empleado->getAddress());
-         $sheet->getCell('A3')->setValue('Email');
-         $sheet->getCell('B3')->setValue($empleado->getEmail());        
-
-         //dump($headers); die;
-         define('CELDA', 'B');
-         $valor = 5;
-         $sheet->getCell('A' . $valor)->setValue('Fecha');
-
-         $celdaSoporte = CELDA;
-         for ($i_Datos=0; $i_Datos <count($headers) ; $i_Datos++) { 
-             $sheet->getCell($celdaSoporte . $valor)->setValue($headers[$i_Datos]['clave']);   
-             $celdaSoporte++;  
-         }
-
-         for ($i=0; $i < count($data) ; $i++) {             
-            $sheet->getCell('A'. intval($valor+1))->setValue($data[$i]['fecha']);
-                      
-            $celdaSoporte = CELDA;
-            if (count($data[$i]['datos']) == 0){               
-                for ($i_Datos=0; $i_Datos <count($headers) ; $i_Datos++) { 
-                    //$sheet->getCell($celdaSoporte . $valor)->setValue($headers[$i_Datos]['clave']);                    
-                    $sheet->getCell($celdaSoporte . intval($valor + 1))->setValue('No trabajado');                                          
-                    $celdaSoporte++; 
-                }  
-                $valor = $valor+1;                                                                                    
-            }else{
-                foreach ($data[$i]['datos'] as $key => $value) {                   
-                    //$sheet->getCell($celdaSoporte . $valor)->setValue($value['clave']);                    
-                    $sheet->getCell($celdaSoporte . intval($valor + 1))->setValue($value['valor']);    
-                     $celdaSoporte++;                      
-                }    
-                $valor = $valor+1;                            
-            }
-         }                                                
-
-        $writer = new Xlsx($spreadsheet);        
-
-         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-         header('Content-Disposition: attachment;filename="reporte.xls"');
-
-         ob_end_clean();
-         $writer->save('php://output');
-        
-        return $this->redirectToRoute('home');
     }
 }

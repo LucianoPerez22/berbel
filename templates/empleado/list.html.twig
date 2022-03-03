@@ -36,8 +36,7 @@
             </div>
             <div class="znv-col-actions">
                 <div class="znv-group">
-                    {{ macro_listActionButton(path('empleado_hour', {'id' : empleado.id}), 'page.list.buttons.work', 'far fa-file', ['ROLE_EMPLEADOS_HOUR']) }}
-                    {{ macro_listActionButton(path('empleado_reports', {'id' : empleado.id}), 'page.list.buttons.report', 'fa-list', ['ROLE_EMPLEADOS_REPORT']) }}
+                    {{ macro_listActionButton(path('empleado_hour', {'id' : empleado.id}), 'page.list.buttons.work', 'fa-list', ['ROLE_EMPLEADOS_HOUR']) }}
                     {{ macro_listActionButton(path('empleado_view', {'id' : empleado.id}), 'page.list.buttons.view', 'fa-eye', ['ROLE_EMPLEADOS_VIEW']) }}
                     {{ macro_listActionButton(path('empleado_edit', {'id' : empleado.id}), 'page.list.buttons.edit', 'fa-pencil', ['ROLE_EMPLEADOS_EDIT']) }}
                     {{ macro_liConfirmButton('page.list.buttons.delete', 'znv-icon fa-trash', ['ROLE_EMPLEADOS_DELETE'], 'setNameAndText') }}
