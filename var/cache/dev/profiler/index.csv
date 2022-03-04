@@ -4428,3 +4428,16 @@ c99ffb,127.0.0.1,GET,http://localhost:8000/admin/empleados/list,1646395258,,200
 a487f3,127.0.0.1,GET,http://localhost:8000/logout,1646395262,,302
 1d31cc,127.0.0.1,GET,http://localhost:8000/,1646395262,,302
 66c786,127.0.0.1,GET,http://localhost:8000/login,1646395262,,200
+9ee7cb,127.0.0.1,GET,http://localhost:8000/,1646395379,,302
+a07671,127.0.0.1,GET,http://localhost:8000/login,1646395379,,200
+8c430a,127.0.0.1,POST,http://localhost:8000/login,1646395391,,302
+d6a446,127.0.0.1,GET,http://localhost:8000/,1646395391,,200
+8240e8,127.0.0.1,GET,http://localhost:8000/admin/empleados/list,1646395394,,200
+54bfe1,127.0.0.1,GET,http://localhost:8000/admin/empleado/8/view,1646395401,,200
+8b7e3e,127.0.0.1,GET,http://localhost:8000/admin/empleados/list,1646395403,,200
+3f5261,127.0.0.1,GET,http://localhost:8000/admin/empleado/8/hour,1646395410,,200
+af775d,127.0.0.1,GET,http://localhost:8000/admin/empleados/list,1646395413,,200
+cd5144,127.0.0.1,GET,http://localhost:8000/,1646395416,,200
+e8ff39,127.0.0.1,GET,http://localhost:8000/logout,1646395419,,302
+4f15b0,127.0.0.1,GET,http://localhost:8000/,1646395419,,302
+c41f16,127.0.0.1,GET,http://localhost:8000/login,1646395419,,200
