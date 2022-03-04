@@ -21,8 +21,14 @@
 </div>
 
 <div class="znv-card-full znv-two-column">
-  {{ macro_cardHalfView('page.user.labels.username' | trans, empleado.phone) }}
+  {{ macro_cardHalfView('page.user.labels.phone' | trans, empleado.phone) }}
   {{ macro_cardHalfView('page.user.labels.email' | trans, empleado.email) }}
+  {{ macro_cardHalfView('page.user.labels.cuil' | trans, empleado.cuil) }}
+  {{ macro_cardHalfView('page.user.labels.ingreso' | trans, empleado.fechaIngreso |date('d-m-Y')) }}
+  {{ macro_cardHalfView('page.user.labels.address' | trans, empleado.address) }}
+  {{ macro_cardHalfView('page.user.labels.city' | trans, empleado.city) }}
+  {{ macro_cardHalfView('page.user.labels.state' | trans, empleado.state) }}
+  
   {# {{ macro_cardHalfView('page.user.labels.status' | trans,
      (user.enabled ? 'form.buttons.enabled' : 'form.buttons.disabled')|trans) }} #}
   {# {{ macro_cardHalfView('page.user.labels.groups' | trans, user.groups | join(', ') | default(null)) }} #}

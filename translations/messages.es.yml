@@ -77,7 +77,7 @@ page:
             view: Vista
             edit: Edición
             enable: Habilitar
-            disale: Deshabilitar
+            disable: Deshabilitar
             switch: Cambiar
             delete: Borrar
             propiedades: Propiedades
@@ -113,6 +113,7 @@ page:
     user:
         title:
             change_password: Cambiar Contraseña
+            create_password: Crear Contraseña
             reset_password: Resetear Contraseña
             list: Lista de Usuarios
             view: Vista de Usuario
@@ -124,6 +125,12 @@ page:
             email: Email
             groups: Grupos
             status: Status
+            phone: Telefono
+            address: Direccion
+            city: Ciudad
+            state: Provincia
+            cuil: Cuil
+            ingreso: Fecha Ingreso
         buttons:
             add: Agregar Usuario
         confirm:

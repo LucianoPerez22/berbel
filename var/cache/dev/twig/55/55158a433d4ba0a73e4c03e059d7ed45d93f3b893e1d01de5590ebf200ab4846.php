@@ -116,16 +116,37 @@ class __TwigTemplate_1cb48978bd2e87f64b1f0c4abdbe16f61631da57cd11fede183de1956d2
 <div class=\"znv-card-full znv-two-column\">
   ";
         // line 24
-        echo $this->extensions['App\Twig\MacroAutoloadTwigExtension']->twig_render_macro($this->env, $context, "cardHalfView", [0 => $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("page.user.labels.username"), 1 => twig_get_attribute($this->env, $this->source, (isset($context["empleado"]) || array_key_exists("empleado", $context) ? $context["empleado"] : (function () { throw new RuntimeError('Variable "empleado" does not exist.', 24, $this->source); })()), "phone", [], "any", false, false, false, 24)]);
+        echo $this->extensions['App\Twig\MacroAutoloadTwigExtension']->twig_render_macro($this->env, $context, "cardHalfView", [0 => $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("page.user.labels.phone"), 1 => twig_get_attribute($this->env, $this->source, (isset($context["empleado"]) || array_key_exists("empleado", $context) ? $context["empleado"] : (function () { throw new RuntimeError('Variable "empleado" does not exist.', 24, $this->source); })()), "phone", [], "any", false, false, false, 24)]);
         echo "
   ";
         // line 25
         echo $this->extensions['App\Twig\MacroAutoloadTwigExtension']->twig_render_macro($this->env, $context, "cardHalfView", [0 => $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("page.user.labels.email"), 1 => twig_get_attribute($this->env, $this->source, (isset($context["empleado"]) || array_key_exists("empleado", $context) ? $context["empleado"] : (function () { throw new RuntimeError('Variable "empleado" does not exist.', 25, $this->source); })()), "email", [], "any", false, false, false, 25)]);
         echo "
   ";
+        // line 26
+        echo $this->extensions['App\Twig\MacroAutoloadTwigExtension']->twig_render_macro($this->env, $context, "cardHalfView", [0 => $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("page.user.labels.cuil"), 1 => twig_get_attribute($this->env, $this->source, (isset($context["empleado"]) || array_key_exists("empleado", $context) ? $context["empleado"] : (function () { throw new RuntimeError('Variable "empleado" does not exist.', 26, $this->source); })()), "cuil", [], "any", false, false, false, 26)]);
+        echo "
+  ";
+        // line 27
+        echo $this->extensions['App\Twig\MacroAutoloadTwigExtension']->twig_render_macro($this->env, $context, "cardHalfView", [0 => $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("page.user.labels.ingreso"), 1 => twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["empleado"]) || array_key_exists("empleado", $context) ? $context["empleado"] : (function () { throw new RuntimeError('Variable "empleado" does not exist.', 27, $this->source); })()), "fechaIngreso", [], "any", false, false, false, 27), "d-m-Y")]);
+        echo "
+  ";
         // line 28
-        echo "  ";
+        echo $this->extensions['App\Twig\MacroAutoloadTwigExtension']->twig_render_macro($this->env, $context, "cardHalfView", [0 => $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("page.user.labels.address"), 1 => twig_get_attribute($this->env, $this->source, (isset($context["empleado"]) || array_key_exists("empleado", $context) ? $context["empleado"] : (function () { throw new RuntimeError('Variable "empleado" does not exist.', 28, $this->source); })()), "address", [], "any", false, false, false, 28)]);
+        echo "
+  ";
         // line 29
+        echo $this->extensions['App\Twig\MacroAutoloadTwigExtension']->twig_render_macro($this->env, $context, "cardHalfView", [0 => $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("page.user.labels.city"), 1 => twig_get_attribute($this->env, $this->source, (isset($context["empleado"]) || array_key_exists("empleado", $context) ? $context["empleado"] : (function () { throw new RuntimeError('Variable "empleado" does not exist.', 29, $this->source); })()), "city", [], "any", false, false, false, 29)]);
+        echo "
+  ";
+        // line 30
+        echo $this->extensions['App\Twig\MacroAutoloadTwigExtension']->twig_render_macro($this->env, $context, "cardHalfView", [0 => $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("page.user.labels.state"), 1 => twig_get_attribute($this->env, $this->source, (isset($context["empleado"]) || array_key_exists("empleado", $context) ? $context["empleado"] : (function () { throw new RuntimeError('Variable "empleado" does not exist.', 30, $this->source); })()), "state", [], "any", false, false, false, 30)]);
+        echo "
+  
+  ";
+        // line 34
+        echo "  ";
+        // line 35
         echo "</div>
 
 ";
@@ -149,7 +170,7 @@ class __TwigTemplate_1cb48978bd2e87f64b1f0c4abdbe16f61631da57cd11fede183de1956d2
 
     public function getDebugInfo()
     {
-        return array (  129 => 29,  127 => 28,  123 => 25,  119 => 24,  111 => 19,  107 => 18,  103 => 16,  93 => 15,  80 => 11,  77 => 10,  75 => 8,  74 => 7,  64 => 6,  53 => 1,  51 => 4,  49 => 3,  36 => 1,);
+        return array (  150 => 35,  148 => 34,  143 => 30,  139 => 29,  135 => 28,  131 => 27,  127 => 26,  123 => 25,  119 => 24,  111 => 19,  107 => 18,  103 => 16,  93 => 15,  80 => 11,  77 => 10,  75 => 8,  74 => 7,  64 => 6,  53 => 1,  51 => 4,  49 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -177,8 +198,14 @@ class __TwigTemplate_1cb48978bd2e87f64b1f0c4abdbe16f61631da57cd11fede183de1956d2
 </div>
 
 <div class=\"znv-card-full znv-two-column\">
-  {{ macro_cardHalfView('page.user.labels.username' | trans, empleado.phone) }}
+  {{ macro_cardHalfView('page.user.labels.phone' | trans, empleado.phone) }}
   {{ macro_cardHalfView('page.user.labels.email' | trans, empleado.email) }}
+  {{ macro_cardHalfView('page.user.labels.cuil' | trans, empleado.cuil) }}
+  {{ macro_cardHalfView('page.user.labels.ingreso' | trans, empleado.fechaIngreso |date('d-m-Y')) }}
+  {{ macro_cardHalfView('page.user.labels.address' | trans, empleado.address) }}
+  {{ macro_cardHalfView('page.user.labels.city' | trans, empleado.city) }}
+  {{ macro_cardHalfView('page.user.labels.state' | trans, empleado.state) }}
+  
   {# {{ macro_cardHalfView('page.user.labels.status' | trans,
      (user.enabled ? 'form.buttons.enabled' : 'form.buttons.disabled')|trans) }} #}
   {# {{ macro_cardHalfView('page.user.labels.groups' | trans, user.groups | join(', ') | default(null)) }} #}

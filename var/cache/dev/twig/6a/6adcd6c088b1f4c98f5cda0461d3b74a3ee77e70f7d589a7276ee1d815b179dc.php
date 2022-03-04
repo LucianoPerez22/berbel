@@ -41,13 +41,9 @@ class __TwigTemplate_ad9d728c34ed4b5782fa1bb128941cb6fedd34b1cc59e5d682ae476bbce
 
         // line 1
         echo "<footer class=\"copyright\">
-    <p>Copyright © 2021 Luciano D. Perez</p>
-    <a target=\"_blank\" href=\"mailto:bsoft2005@gmail.com\">
-        <img src=\"";
-        // line 4
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/images/powered_by_zennovia.png"), "html", null, true);
-        echo "\" width=\"145\" height=\"13\" alt=\"Powered by Zennovia\"
-             title=\"Powered by Zennovia\">
+    <p>Copyright © 2022 Luciano D. Perez</p>    
+     <a target=\"_blank\" href=\"mailto:bsoft2005@gmail.com\">
+        <p>bsoft2005@gmail.com</p>
     </a>
 </footer>
 ";
@@ -64,23 +60,17 @@ class __TwigTemplate_ad9d728c34ed4b5782fa1bb128941cb6fedd34b1cc59e5d682ae476bbce
         return "global/_footer.html.twig";
     }
 
-    public function isTraitable()
-    {
-        return false;
-    }
-
     public function getDebugInfo()
     {
-        return array (  48 => 4,  43 => 1,);
+        return array (  43 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("<footer class=\"copyright\">
-    <p>Copyright © 2021 Luciano D. Perez</p>
-    <a target=\"_blank\" href=\"mailto:bsoft2005@gmail.com\">
-        <img src=\"{{ asset('build/images/powered_by_zennovia.png') }}\" width=\"145\" height=\"13\" alt=\"Powered by Zennovia\"
-             title=\"Powered by Zennovia\">
+    <p>Copyright © 2022 Luciano D. Perez</p>    
+     <a target=\"_blank\" href=\"mailto:bsoft2005@gmail.com\">
+        <p>bsoft2005@gmail.com</p>
     </a>
 </footer>
 ", "global/_footer.html.twig", "/Users/lucianoperez/Documents/Zennovia/berbel/web/templates/global/_footer.html.twig");

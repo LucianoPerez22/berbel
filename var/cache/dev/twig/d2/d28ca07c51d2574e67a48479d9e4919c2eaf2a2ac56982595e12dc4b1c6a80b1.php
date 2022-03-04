@@ -72,48 +72,54 @@ class __TwigTemplate_6d6702dc049015ca529f6a63c07adeb59f6662d5a9d4b15196f6c49425d
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "formContent"));
 
         // line 8
-        echo "    <div class=\"znv-half\">
+        echo "     <div class=\"znv-half\">
         ";
         // line 9
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 9, $this->source); })()), "name", [], "any", false, false, false, 9), 'row');
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 9, $this->source); })()), "fechaIngreso", [], "any", false, false, false, 9), 'row');
         echo "
     </div>
     <div class=\"znv-half\">
         ";
         // line 12
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 12, $this->source); })()), "state", [], "any", false, false, false, 12), 'row');
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 12, $this->source); })()), "cuil", [], "any", false, false, false, 12), 'row');
         echo "
     </div>
     <div class=\"znv-half\">
         ";
         // line 15
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 15, $this->source); })()), "city", [], "any", false, false, false, 15), 'row');
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 15, $this->source); })()), "name", [], "any", false, false, false, 15), 'row');
         echo "
     </div>
     <div class=\"znv-half\">
         ";
         // line 18
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 18, $this->source); })()), "address", [], "any", false, false, false, 18), 'row');
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 18, $this->source); })()), "state", [], "any", false, false, false, 18), 'row');
         echo "
     </div>
     <div class=\"znv-half\">
         ";
         // line 21
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 21, $this->source); })()), "phone", [], "any", false, false, false, 21), 'row');
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 21, $this->source); })()), "city", [], "any", false, false, false, 21), 'row');
         echo "
     </div>
     <div class=\"znv-half\">
         ";
         // line 24
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 24, $this->source); })()), "email", [], "any", false, false, false, 24), 'row');
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 24, $this->source); })()), "address", [], "any", false, false, false, 24), 'row');
         echo "
     </div>
     <div class=\"znv-half\">
         ";
         // line 27
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 27, $this->source); })()), "status", [], "any", false, false, false, 27), 'row');
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 27, $this->source); })()), "phone", [], "any", false, false, false, 27), 'row');
         echo "
     </div>
+    <div class=\"znv-half\">
+        ";
+        // line 30
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 30, $this->source); })()), "email", [], "any", false, false, false, 30), 'row');
+        echo "
+    </div>   
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -135,7 +141,7 @@ class __TwigTemplate_6d6702dc049015ca529f6a63c07adeb59f6662d5a9d4b15196f6c49425d
 
     public function getDebugInfo()
     {
-        return array (  114 => 27,  108 => 24,  102 => 21,  96 => 18,  90 => 15,  84 => 12,  78 => 9,  75 => 8,  65 => 7,  54 => 1,  52 => 5,  50 => 4,  48 => 3,  35 => 1,);
+        return array (  120 => 30,  114 => 27,  108 => 24,  102 => 21,  96 => 18,  90 => 15,  84 => 12,  78 => 9,  75 => 8,  65 => 7,  54 => 1,  52 => 5,  50 => 4,  48 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -147,6 +153,12 @@ class __TwigTemplate_6d6702dc049015ca529f6a63c07adeb59f6662d5a9d4b15196f6c49425d
 {% set pathCancel = path('empleados_list') %}
 
 {% block formContent %}
+     <div class=\"znv-half\">
+        {{ form_row(form.fechaIngreso) }}
+    </div>
+    <div class=\"znv-half\">
+        {{ form_row(form.cuil) }}
+    </div>
     <div class=\"znv-half\">
         {{ form_row(form.name) }}
     </div>
@@ -164,10 +176,7 @@ class __TwigTemplate_6d6702dc049015ca529f6a63c07adeb59f6662d5a9d4b15196f6c49425d
     </div>
     <div class=\"znv-half\">
         {{ form_row(form.email) }}
-    </div>
-    <div class=\"znv-half\">
-        {{ form_row(form.status) }}
-    </div>
+    </div>   
 {% endblock %}
 ", "empleado/edit.html.twig", "/Users/lucianoperez/Documents/Zennovia/berbel/web/templates/empleado/edit.html.twig");
     }

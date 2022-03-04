@@ -84,7 +84,7 @@
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
     <parameter key="kernel.container_class">App_KernelDevDebugContainer</parameter>
-    <parameter key="email_from_no_reply">no_reply@zennovia.com</parameter>
+    <parameter key="email_from_no_reply">no-reply@bsapp.site</parameter>
     <parameter key="event_dispatcher.event_aliases" type="collection">
       <parameter key="Symfony\Component\Console\Event\ConsoleCommandEvent">console.command</parameter>
       <parameter key="Symfony\Component\Console\Event\ConsoleErrorEvent">console.error</parameter>
@@ -490,6 +490,9 @@
     <service id="App\Form\Type\SaveGroupType" class="App\Form\Type\SaveGroupType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Form\Type\SaveHourType" class="App\Form\Type\SaveHourType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\Type\SavePropiedadType" class="App\Form\Type\SavePropiedadType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
@@ -505,6 +508,10 @@
       <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\GroupRepository" class="App\Repository\GroupRepository" autowire="true" autoconfigure="true"/>
+    <service id="App\Repository\ParteDiarioRepository" class="App\Repository\ParteDiarioRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
     <service id="App\Repository\PropiedadesRepository" class="App\Repository\PropiedadesRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
@@ -519,14 +526,14 @@
       <argument type="service" id="twig"/>
       <argument type="service" id="swiftmailer.mailer.default"/>
       <call method="setFrom">
-        <argument>no_reply@zennovia.com</argument>
+        <argument>no-reply@bsapp.site</argument>
       </call>
     </service>
     <service id="App\Service\Registration" class="App\Service\Registration" autowire="true" autoconfigure="true">
       <argument type="service" id="twig"/>
       <argument type="service" id="swiftmailer.mailer.default"/>
       <call method="setFrom">
-        <argument>no_reply@zennovia.com</argument>
+        <argument>no-reply@bsapp.site</argument>
       </call>
     </service>
     <service id="App\Service\SwitchUserSubscriber" class="App\Service\SwitchUserSubscriber" autowire="true" autoconfigure="true">
@@ -1183,6 +1190,7 @@
         <argument>App\Form\Type\SaveAreaType</argument>
         <argument>App\Form\Type\SaveEmpleadoType</argument>
         <argument>App\Form\Type\SaveGroupType</argument>
+        <argument>App\Form\Type\SaveHourType</argument>
         <argument>App\Form\Type\SavePropiedadType</argument>
         <argument>App\Form\Type\SaveUserType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
@@ -1614,7 +1622,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.4BYTenY"/>
+      <argument type="service" id=".service_locator.ZENiYAL"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -1760,6 +1768,11 @@
       <argument></argument>
       <argument type="service" id="assets._version__default"/>
       <argument type="service" id="assets.context"/>
+    </service>
+    <service id="psr18.http_client" class="Symfony\Component\HttpClient\Psr18Client">
+      <argument type="service" id=".debug.http_client"/>
+      <argument>null</argument>
+      <argument>null</argument>
     </service>
     <service id="http_client.abstract_retry_strategy" class="Symfony\Component\HttpClient\Retry\GenericRetryStrategy" abstract="true">
       <argument type="abstract">http codes</argument>
@@ -4427,7 +4440,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.GeK1C9u"/>
+      <argument type="service" id=".service_locator.Nj4yfvB"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -6392,6 +6405,8 @@
     <service id=".abstract.instanceof.App\Form\Type\SaveEmpleadoType" class="App\Form\Type\SaveEmpleadoType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\Type\SaveGroupType" class="App\Form\Type\SaveGroupType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\Type\SaveGroupType" class="App\Form\Type\SaveGroupType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\Type\SaveHourType" class="App\Form\Type\SaveHourType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\Type\SaveHourType" class="App\Form\Type\SaveHourType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\Type\SavePropiedadType" class="App\Form\Type\SavePropiedadType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\Type\SavePropiedadType" class="App\Form\Type\SavePropiedadType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\Type\SaveUserType" class="App\Form\Type\SaveUserType" autowire="true" abstract="true"/>
@@ -6400,6 +6415,8 @@
     <service id=".abstract.instanceof.App\Repository\AreasRepository" class="App\Repository\AreasRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\EmpleadosRepository" class="App\Repository\EmpleadosRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\EmpleadosRepository" class="App\Repository\EmpleadosRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ParteDiarioRepository" class="App\Repository\ParteDiarioRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\ParteDiarioRepository" class="App\Repository\ParteDiarioRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\PropiedadesRepository" class="App\Repository\PropiedadesRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\PropiedadesRepository" class="App\Repository\PropiedadesRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\EventDispatcher\EventSubscriberInterface.0.App\Service\SwitchUserSubscriber" class="App\Service\SwitchUserSubscriber" autowire="true" abstract="true"/>
@@ -6778,6 +6795,21 @@
         <argument key="helper" type="service_closure" id="App\Zennovia\Common\EntityManagerHelper"/>
       </argument>
     </service>
+    <service id=".service_locator.3V4LUjL" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="empleadoId" type="service_closure" id=".errored..service_locator.3V4LUjL.App\Entity\Empleados"/>
+        <argument key="handler" type="service_closure" id="App\Form\Handler\SaveCommonFormHandler"/>
+      </argument>
+    </service>
+    <service id=".service_locator.MJR6BSZ" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection"/>
+    </service>
+    <service id=".service_locator.bEYn.Lt" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection"/>
+    </service>
     <service id=".service_locator.s7AY5qU" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -6882,7 +6914,7 @@
         <argument key="handler" type="service_closure" id="App\Form\Handler\RecoverPasswordFormHandler"/>
       </argument>
     </service>
-    <service id=".service_locator.1Ij2kwd" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.4U0_7NH" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\AreaController::deleteAction" type="service_closure" id=".service_locator.A.SWPjw"/>
@@ -6892,9 +6924,10 @@
         <argument key="App\Controller\AreaController::viewAction" type="service_closure" id=".service_locator.r5xUEuX"/>
         <argument key="App\Controller\EmpleadoController::deleteAction" type="service_closure" id=".service_locator.ckN1MWv"/>
         <argument key="App\Controller\EmpleadoController::editAction" type="service_closure" id=".service_locator.Mm1SujM"/>
-        <argument key="App\Controller\EmpleadoController::hourAction" type="service_closure" id=".service_locator.L0M6Qzl"/>
+        <argument key="App\Controller\EmpleadoController::hourAction" type="service_closure" id=".service_locator.3V4LUjL"/>
         <argument key="App\Controller\EmpleadoController::listAction" type="service_closure" id=".service_locator.UZlKG_j"/>
         <argument key="App\Controller\EmpleadoController::newAction" type="service_closure" id=".service_locator.L0M6Qzl"/>
+        <argument key="App\Controller\EmpleadoController::reportAction" type="service_closure" id=".service_locator.T13HD96"/>
         <argument key="App\Controller\EmpleadoController::viewAction" type="service_closure" id=".service_locator.T13HD96"/>
         <argument key="App\Controller\GroupController::deleteAction" type="service_closure" id=".service_locator.l_MNRki"/>
         <argument key="App\Controller\GroupController::editAction" type="service_closure" id=".service_locator.s7AY5qU"/>
@@ -6929,9 +6962,10 @@
         <argument key="App\Controller\AreaController:viewAction" type="service_closure" id=".service_locator.r5xUEuX"/>
         <argument key="App\Controller\EmpleadoController:deleteAction" type="service_closure" id=".service_locator.ckN1MWv"/>
         <argument key="App\Controller\EmpleadoController:editAction" type="service_closure" id=".service_locator.Mm1SujM"/>
-        <argument key="App\Controller\EmpleadoController:hourAction" type="service_closure" id=".service_locator.L0M6Qzl"/>
+        <argument key="App\Controller\EmpleadoController:hourAction" type="service_closure" id=".service_locator.3V4LUjL"/>
         <argument key="App\Controller\EmpleadoController:listAction" type="service_closure" id=".service_locator.UZlKG_j"/>
         <argument key="App\Controller\EmpleadoController:newAction" type="service_closure" id=".service_locator.L0M6Qzl"/>
+        <argument key="App\Controller\EmpleadoController:reportAction" type="service_closure" id=".service_locator.T13HD96"/>
         <argument key="App\Controller\EmpleadoController:viewAction" type="service_closure" id=".service_locator.T13HD96"/>
         <argument key="App\Controller\GroupController:deleteAction" type="service_closure" id=".service_locator.l_MNRki"/>
         <argument key="App\Controller\GroupController:editAction" type="service_closure" id=".service_locator.s7AY5qU"/>
@@ -7019,7 +7053,7 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.4BYTenY" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.ZENiYAL" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\Filter\AreaFilterType" type="service_closure" id="App\Form\Filter\AreaFilterType"/>
@@ -7038,6 +7072,7 @@
         <argument key="App\Form\Type\SaveAreaType" type="service_closure" id="App\Form\Type\SaveAreaType"/>
         <argument key="App\Form\Type\SaveEmpleadoType" type="service_closure" id="App\Form\Type\SaveEmpleadoType"/>
         <argument key="App\Form\Type\SaveGroupType" type="service_closure" id="App\Form\Type\SaveGroupType"/>
+        <argument key="App\Form\Type\SaveHourType" type="service_closure" id="App\Form\Type\SaveHourType"/>
         <argument key="App\Form\Type\SavePropiedadType" type="service_closure" id="App\Form\Type\SavePropiedadType"/>
         <argument key="App\Form\Type\SaveUserType" type="service_closure" id="App\Form\Type\SaveUserType"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service_closure" id="form.type.entity"/>
@@ -7069,11 +7104,12 @@
       <argument type="service" id="cache.doctrine.orm.default.result"/>
       <factory class="Doctrine\Common\Cache\Psr6\DoctrineProvider" method="wrap"/>
     </service>
-    <service id=".service_locator.GeK1C9u" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.Nj4yfvB" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\AreasRepository" type="service_closure" id="App\Repository\AreasRepository"/>
         <argument key="App\Repository\EmpleadosRepository" type="service_closure" id="App\Repository\EmpleadosRepository"/>
+        <argument key="App\Repository\ParteDiarioRepository" type="service_closure" id="App\Repository\ParteDiarioRepository"/>
         <argument key="App\Repository\PropiedadesRepository" type="service_closure" id="App\Repository\PropiedadesRepository"/>
       </argument>
     </service>
@@ -7417,6 +7453,7 @@
     <service id=".errored..service_locator.T13HD96.App\Entity\Empleados" class="App\Entity\Empleados"/>
     <service id=".errored..service_locator.Mm1SujM.App\Entity\Empleados" class="App\Entity\Empleados"/>
     <service id=".errored..service_locator.ckN1MWv.App\Entity\Empleados" class="App\Entity\Empleados"/>
+    <service id=".errored..service_locator.3V4LUjL.App\Entity\Empleados" class="App\Entity\Empleados"/>
     <service id=".errored..service_locator.s7AY5qU.App\Entity\Group" class="App\Entity\Group"/>
     <service id=".errored..service_locator.wev3T60.App\Entity\Group" class="App\Entity\Group"/>
     <service id=".errored..service_locator.l_MNRki.App\Entity\Group" class="App\Entity\Group"/>
@@ -7537,12 +7574,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.1Ij2kwd"/>
+      <argument type="service" id=".service_locator.4U0_7NH"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.1Ij2kwd"/>
+      <argument type="service" id=".service_locator.4U0_7NH"/>
     </service>
     <service id=".debug.http_client.inner" class="Symfony\Contracts\HttpClient\HttpClientInterface">
       <argument type="collection"/>
@@ -8308,6 +8345,7 @@
     <service id="form.choice_list_factory" alias="form.choice_list_factory.cached"/>
     <service id="Symfony\Component\Asset\Packages" alias="assets.packages"/>
     <service id="Symfony\Contracts\HttpClient\HttpClientInterface" alias=".debug.http_client"/>
+    <service id="Psr\Http\Client\ClientInterface" alias="psr18.http_client"/>
     <service id="mailer" alias="swiftmailer.mailer.default" public="true"/>
     <service id="Symfony\Component\Mailer\MailerInterface" alias="mailer.mailer"/>
     <service id="Symfony\Component\Mailer\Transport\TransportInterface" alias="mailer.default_transport"/>
@@ -8426,7 +8464,7 @@
     <service id="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface" alias="webpack_encore.entrypoint_lookup[_default]"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.0GV1BZZ" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.1Ij2kwd"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.4U0_7NH"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -8456,6 +8494,7 @@
     <service id=".service_locator.LlbTgO_" alias=".service_locator.T13HD96"/>
     <service id=".service_locator.9O6xqFM" alias=".service_locator.Mm1SujM"/>
     <service id=".service_locator.0x4d2.X" alias=".service_locator.ckN1MWv"/>
+    <service id=".service_locator.X5spgUc" alias=".service_locator.3V4LUjL"/>
     <service id=".service_locator.2CCJ4RS" alias=".service_locator.s7AY5qU"/>
     <service id=".service_locator.JE0VnVO" alias=".service_locator.wev3T60"/>
     <service id=".service_locator.HESAKLN" alias=".service_locator.l_MNRki"/>

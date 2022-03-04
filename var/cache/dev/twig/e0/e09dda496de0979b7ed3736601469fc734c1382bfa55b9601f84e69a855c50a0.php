@@ -73,7 +73,7 @@ class __TwigTemplate_2e2b757f9913504fc83b8eca598633049f4c54b486d060c6f29ec0da872
         echo "<div class=\"mt-5 text-center mb-5\">
 <img src=\"";
         // line 7
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/images/logoGB.png"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/images/logoBerbel.jpg"), "html", null, true);
         echo "\" width=\"250\" height=\"250\" alt=\"Gruas Berbel SRL\"
              title=\"Gruas Berbel SRL\">
 </div>
@@ -109,7 +109,7 @@ class __TwigTemplate_2e2b757f9913504fc83b8eca598633049f4c54b486d060c6f29ec0da872
 
 {% block content %}
 <div class=\"mt-5 text-center mb-5\">
-<img src=\"{{ asset('build/images/logoGB.png') }}\" width=\"250\" height=\"250\" alt=\"Gruas Berbel SRL\"
+<img src=\"{{ asset('build/images/logoBerbel.jpg') }}\" width=\"250\" height=\"250\" alt=\"Gruas Berbel SRL\"
              title=\"Gruas Berbel SRL\">
 </div>
 {% endblock %}", "dashboard/index.html.twig", "/Users/lucianoperez/Documents/Zennovia/berbel/web/templates/dashboard/index.html.twig");

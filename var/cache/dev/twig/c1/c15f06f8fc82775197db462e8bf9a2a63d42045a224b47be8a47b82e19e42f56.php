@@ -72,7 +72,7 @@ class __TwigTemplate_ae8bd897fa56d41992f7c492e0fd289c359480f4dd0c6bc9011ed418897
                                         ¡";
         // line 30
         echo $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("registration.message.welcome", [], "email");
-        echo " Zennovia Skeleton!
+        echo " Gruas Berbel!
                                     </h1>
                                 </td>
                             </tr>
@@ -116,7 +116,7 @@ class __TwigTemplate_ae8bd897fa56d41992f7c492e0fd289c359480f4dd0c6bc9011ed418897
         // line 58
         echo $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("registration.message.greeting", [], "email");
         echo " <br>
-                                        <strong>Zennovia Skeleton</strong>
+                                        <strong>Luciano D. Perez</strong>
                                     </p>
                                 </td>
                             </tr>
@@ -126,7 +126,7 @@ class __TwigTemplate_ae8bd897fa56d41992f7c492e0fd289c359480f4dd0c6bc9011ed418897
                 </tr>
                 <tr>
                     <td align=\"center\" style=\"color:#ababab;font-family:Helvetica,Arial,sans-serif;font-size:13px;font-weight:normal;line-height:16px;margin:0;padding-top: 5px;text-align:center;word-wrap:normal;\">
-                        Zennovia Skeleton · ";
+                        Luciano D. Perez · ";
         // line 69
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, "now", "Y"), "html", null, true);
         echo "
@@ -193,7 +193,7 @@ class __TwigTemplate_ae8bd897fa56d41992f7c492e0fd289c359480f4dd0c6bc9011ed418897
                             <tr>
                                 <td align=\"center\">
                                     <h1 style=\"color:#444444;font-family:Helvetica,Arial,sans-serif;font-size:28px;font-weight:normal;line-height:32px;margin:0; margin-bottom: 10px; padding-top:10px; padding-bottom: 10px;text-align:center;word-wrap:normal\">
-                                        ¡{{ 'registration.message.welcome' | trans({}, 'email') | raw}} Zennovia Skeleton!
+                                        ¡{{ 'registration.message.welcome' | trans({}, 'email') | raw}} Gruas Berbel!
                                     </h1>
                                 </td>
                             </tr>
@@ -222,7 +222,7 @@ class __TwigTemplate_ae8bd897fa56d41992f7c492e0fd289c359480f4dd0c6bc9011ed418897
                                 <td style=\"color:#444444;font-family:Helvetica,Arial,sans-serif;font-size:14px;font-weight:normal;line-height:18px;margin:0;padding-top:30px; padding-bottom: 5px;text-align:left;word-wrap:normal;\">
                                     <p>
                                         {{ 'registration.message.greeting' | trans({}, 'email') | raw }} <br>
-                                        <strong>Zennovia Skeleton</strong>
+                                        <strong>Luciano D. Perez</strong>
                                     </p>
                                 </td>
                             </tr>
@@ -232,7 +232,7 @@ class __TwigTemplate_ae8bd897fa56d41992f7c492e0fd289c359480f4dd0c6bc9011ed418897
                 </tr>
                 <tr>
                     <td align=\"center\" style=\"color:#ababab;font-family:Helvetica,Arial,sans-serif;font-size:13px;font-weight:normal;line-height:16px;margin:0;padding-top: 5px;text-align:center;word-wrap:normal;\">
-                        Zennovia Skeleton · {{ \"now\"|date(\"Y\") }}
+                        Luciano D. Perez · {{ \"now\"|date(\"Y\") }}
                     </td>
                 </tr>
                 </tbody>

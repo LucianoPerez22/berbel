@@ -49,7 +49,7 @@ class __TwigTemplate_368f9d0b0d666dc658371bfd0bfbbe7ca30435b631672c9cc9e1e414f7e
         echo "
 ";
         // line 5
-        $context["rolesMenu"] = [0 => "ROLE_USER_LIST", 1 => "ROLE_GROUP_LIST", 2 => "ROLE_EMPLEADOS_LIST"];
+        $context["rolesMenu"] = [0 => "ROLE_USER_LIST", 1 => "ROLE_GROUP_LIST", 2 => "ROLE_AREAS_LIST", 3 => "ROLE_EMPLEADOS_LIST", 4 => "ROLE_PROPIEDADES_LIST"];
         // line 6
         echo "
 ";
@@ -83,7 +83,7 @@ class __TwigTemplate_368f9d0b0d666dc658371bfd0bfbbe7ca30435b631672c9cc9e1e414f7e
                 <hr />
                  ";
             // line 19
-            echo $this->extensions['App\Twig\MacroAutoloadTwigExtension']->twig_render_macro($this->env, $context, "liNav", [0 => (0 === twig_compare((isset($context["menu"]) || array_key_exists("menu", $context) ? $context["menu"] : (function () { throw new RuntimeError('Variable "menu" does not exist.', 19, $this->source); })()), "empleados")), 1 => "empleados_list", 2 => $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("page.menu.empleados"), 3 => [0 => "ROLE_USER"], 4 => "fa-users"]);
+            echo $this->extensions['App\Twig\MacroAutoloadTwigExtension']->twig_render_macro($this->env, $context, "liNav", [0 => (0 === twig_compare((isset($context["menu"]) || array_key_exists("menu", $context) ? $context["menu"] : (function () { throw new RuntimeError('Variable "menu" does not exist.', 19, $this->source); })()), "empleados")), 1 => "empleados_list", 2 => $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("page.menu.empleados"), 3 => [0 => "ROLE_EMPLEADOS_LIST"], 4 => "fa-users"]);
             echo "
                  <hr />
                  ";
@@ -100,7 +100,7 @@ class __TwigTemplate_368f9d0b0d666dc658371bfd0bfbbe7ca30435b631672c9cc9e1e414f7e
             echo "           
                 ";
             // line 25
-            echo $this->extensions['App\Twig\MacroAutoloadTwigExtension']->twig_render_macro($this->env, $context, "liNav", [0 => (0 === twig_compare((isset($context["menu"]) || array_key_exists("menu", $context) ? $context["menu"] : (function () { throw new RuntimeError('Variable "menu" does not exist.', 25, $this->source); })()), "empleados")), 1 => "empleados_list", 2 => $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("page.menu.empleados"), 3 => [0 => "ROLE_USER"], 4 => "fa-users"]);
+            echo $this->extensions['App\Twig\MacroAutoloadTwigExtension']->twig_render_macro($this->env, $context, "liNav", [0 => (0 === twig_compare((isset($context["menu"]) || array_key_exists("menu", $context) ? $context["menu"] : (function () { throw new RuntimeError('Variable "menu" does not exist.', 25, $this->source); })()), "empleados")), 1 => "empleados_list", 2 => $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("page.menu.empleados"), 3 => [0 => "ROLE_EMPLEADOS_LIST"], 4 => "fa-users"]);
             echo "                                                             
             ";
         }
@@ -138,7 +138,7 @@ class __TwigTemplate_368f9d0b0d666dc658371bfd0bfbbe7ca30435b631672c9cc9e1e414f7e
     {% set menu = \"\" %}
 {% endif %}
 
-{% set rolesMenu = ['ROLE_USER_LIST', 'ROLE_GROUP_LIST', 'ROLE_EMPLEADOS_LIST'] %}
+{% set rolesMenu = ['ROLE_USER_LIST', 'ROLE_GROUP_LIST', 'ROLE_AREAS_LIST', 'ROLE_EMPLEADOS_LIST', 'ROLE_PROPIEDADES_LIST'] %}
 
 {% set listMenu =  [] %}
 
@@ -152,13 +152,13 @@ class __TwigTemplate_368f9d0b0d666dc658371bfd0bfbbe7ca30435b631672c9cc9e1e414f7e
                 {{ macro_liNav((menu == \"user\"), 'user_list', 'page.menu.user'|trans, ['ROLE_USER_LIST'], 'fa-user') }}
                 {{ macro_liNav((menu == \"group\"), 'group_list', 'page.menu.group'|trans, ['ROLE_GROUP_LIST'], 'fa-users') }}
                 <hr />
-                 {{ macro_liNav((menu == \"empleados\"), 'empleados_list', 'page.menu.empleados'|trans, ['ROLE_USER'], 'fa-users') }}
+                 {{ macro_liNav((menu == \"empleados\"), 'empleados_list', 'page.menu.empleados'|trans, ['ROLE_EMPLEADOS_LIST'], 'fa-users') }}
                  <hr />
                  {{ macro_liNav((menu == \"areas\"), 'areas_list', 'page.menu.areas'|trans, ['ROLE_AREAS_LIST'], 'fa-users') }}
             {% endif %}
             {# PARA EL USUARIO COMUN #}
             {% if app.user.hasRole(rolesMenu) and not app.user.isSuperAdmin %}           
-                {{ macro_liNav((menu == \"empleados\"), 'empleados_list', 'page.menu.empleados'|trans, ['ROLE_USER'], 'fa-users') }}                                                             
+                {{ macro_liNav((menu == \"empleados\"), 'empleados_list', 'page.menu.empleados'|trans, ['ROLE_EMPLEADOS_LIST'], 'fa-users') }}                                                             
             {% endif %}
         </ul>
     </div><!-- znv-nav-section -->
